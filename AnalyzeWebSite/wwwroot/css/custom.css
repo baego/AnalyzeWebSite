@@ -1,0 +1,27 @@
+﻿.navbar-custom {
+  background-color: midnightblue;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+ul.list-custom {
+  font-family: Calibri;
+  font-size: large;
+  margin: 0;
+  padding: 4px;
+  text-align: left;
+
+}
+
+  ul.list-custom li {
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+    
+  }
+
+  ul.list-custom a {
+    color: white;
+  }
+
+
