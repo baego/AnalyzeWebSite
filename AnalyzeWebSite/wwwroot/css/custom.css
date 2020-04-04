@@ -1,7 +1,7 @@
 ﻿.navbar-custom {
   background-color: midnightblue;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  /*border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;*/
 }
 
 ul.list-custom {
@@ -23,5 +23,20 @@ ul.list-custom {
   ul.list-custom a {
     color: white;
   }
+
+.index-hi {
+  margin-top: 20%;
+  color: cornflowerblue;
+  font-size: 400%;
+  display:none;
+}
+
+.magister-logo-pic {
+  position: fixed;
+  left: 65%;
+  top: 30%;
+  width: 300px;
+  height: 300px;
+}
 
 

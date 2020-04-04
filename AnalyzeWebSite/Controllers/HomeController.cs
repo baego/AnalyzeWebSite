@@ -8,7 +8,12 @@ using AnalyzeWebSite.Models;
 
 namespace AnalyzeWebSite.Controllers {
 	public class HomeController : Controller {
+
 		public IActionResult Index() {
+			return View();
+		}
+
+		public IActionResult History() {
 			return View();
 		}
 

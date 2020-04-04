@@ -10,24 +10,24 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">	
-			<ul class="list-custom" >
-				<li style="font-size: x-large;"><a><img src="~/images/magister-head.png" height="40" width="40" />&nbsp;Моя магистерская диссертация</a></li>
-				<li><a>Lorem</a></li>
-				<li><a>Ipsum</a></li>
-				<li><a>Dolor</a></li>
-				<li><a>Sit</a></li>
-				<li><a>Amet</a></li>
-			</ul>
+	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
+		<ul class="list-custom">
+			<li style="font-size: x-large;"><a href="@Url.Action("Index", "Home")"> <img src="~/images/magister-head.png" height="30" width="30" />&nbsp;Моя магистерская диссертация</a></li>
+			<li><a href="@Url.Action("History", "Home")">История</a></li>
+			<li><a>Ipsum</a></li>
+			<li><a>Dolor</a></li>
+			<li><a>Sit</a></li>
+			<li><a>Amet</a></li>
+		</ul>
 	</nav>
 
 	<div class="container body-content">
 		@RenderBody()
-		<hr />
-		<footer>
-			<p>&copy; 2020 Copyrights</p>
-		</footer>
 	</div>
+	<hr />
+	<footer style="color:cornflowerblue; text-align:center" >
+		<p>&copy; 2020 </p>
+	</footer>
 
 	@RenderSection("Scripts", required: false)
 </body>
