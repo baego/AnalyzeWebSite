@@ -17,19 +17,14 @@ namespace AnalyzeWebSite.Controllers {
 			return View();
 		}
 
-		public IActionResult About() {
-			ViewData["Message"] = "Your application description page.";
-
+		public IActionResult Test() {
 			return View();
 		}
 
-		public IActionResult Contact() {
-			ViewData["Message"] = "Your contact page.";
-
+		public IActionResult AboutYou() {
 			return View();
 		}
-
-		public IActionResult Privacy() {
+		public IActionResult Author() {
 			return View();
 		}
 

@@ -3,16 +3,35 @@
 }
 
 <script src="/node_modules/jquery/dist/jquery.js"></script>
-<script type="text/javascript" src="~/js/indexScripts.js"></script>
-<script type="text/javascript">
-	pageStart();
-</script>
+<script type="text/javascript" src="~/js/loadScripts.js"></script>
 
 <div class="container">
 	<div class="col-md-6">
 		<h1 id="hi" class="index-hi">Добро пожаловать!</h1>
-		<p style="margin-top:30px">Nam malesuada laoreet libero. Donec risus nulla, egestas ut lorem sit amet, commodo efficitur augue. Ut ultricies quam et lectus bibendum cursus. Integer gravida, mauris sed varius gravida, nisi nisi venenatis ante, vel luctus purus sem quis nibh. Fusce rhoncus, dui vel porttitor efficitur, arcu turpis pretium quam, vitae tincidunt ex turpis faucibus metus. Proin maximus nulla nec ante tristique aliquam. Quisque auctor venenatis ligula at suscipit. Sed volutpat risus libero, tincidunt tristique dui auctor nec. Ut mollis lacus dictum arcu dignissim bibendum. Curabitur luctus arcu in nisl elementum auctor. In risus mi, ultricies id pharetra aliquet, pellentesque nec magna. Praesent nec ex sit amet libero tincidunt facilisis placerat quis ex. Integer porta feugiat lorem, gravida fringilla lectus vestibulum ut. Maecenas bibendum tempor vestibulum. In vel dictum tellus.</p>
-		<p>Morbi vitae lacus aliquam, convallis libero quis, interdum tellus. Suspendisse tincidunt maximus urna. Vestibulum a efficitur libero. Sed sit amet ullamcorper est. Etiam aliquam lacinia leo, et aliquet nisl elementum vel. Proin risus nulla, pulvinar et cursus non, bibendum in enim. Vivamus ullamcorper, nisl nec placerat ullamcorper, ex nibh ullamcorper est, ut pharetra mi leo a odio. Maecenas eu accumsan neque. Ut fermentum lacus quis tortor accumsan vulputate.</p>
+		<p style="margin-top:30px">
+			Главная страница. На ней коротко написано о целях проекта (сбор данных для диссертации) и о возможностях сайта (материалы для ознакомления, тест на тему, возможность оставить отзыв, информация об авторе).
+		</p>
+		<div style="border: 1px solid #000;">
+			<p style="margin: 5px">
+				Также здесь обязательно нужно указать данные, которые в учебных целях будут собраны во время нахождения на данном портале, такие как:
+				<ul>
+					<li>время пребывания на сайте и отдельных страницах</li>
+					<li>общее количество просмотров страниц</li>
+					<li>количество нажатых клавиш и их ценность</li>
+					<li>фокус внимания (смена страниц в браузере) </li>
+					<li>количество сеансов на пользователя</li>
+					<li>количество ключевых действий пользователя за сеанс</li>
+					<li>частота применения кнопки «назад»</li>
+					<li>IP-адрес</li>
+					<li>MAC-адрес</li>
+					<li>геолокационные данные</li>
+					<li>данные об используемой ОС, браузере, параметрах оборудования</li>
+					<li>а также то, что пользователь предоставит через опрос и тест</li>
+				</ul>
+			</p>
+		</div>
+		<p style="margin: 0 150px 0 0">Непосредственно на этой странице имеет смысл собирать только общие данные, типа фокуса внимания, технических характеристик, местоположения и т.д. Возможно, будет интересно посмотреть процент отказов сразу с главной страницы.</p>
+		<p>Также планируется подключить к сайту Яндекс.Метрику и Google Analytics для сбора данных и последующего сравнения с полученными результатми.</p>
 	</div>
 	<div class="col-md-6">
 		<img class="magister-logo-pic" src="~/images/magister-logo.png" />

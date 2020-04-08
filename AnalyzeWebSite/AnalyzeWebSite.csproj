@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
   </PropertyGroup>
 
   <ItemGroup>
@@ -296,7 +297,7 @@
     <None Include="node_modules\jquery\src\var\toString.js" />
     <None Include="node_modules\jquery\src\wrap.js" />
     <None Include="wwwroot\css\custom.css" />
-    <None Include="wwwroot\js\indexScripts.js" />
+    <None Include="wwwroot\js\loadScripts.js" />
   </ItemGroup>
 
 </Project>
