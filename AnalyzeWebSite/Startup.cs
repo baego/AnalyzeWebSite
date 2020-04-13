@@ -34,12 +34,14 @@ namespace AnalyzeWebSite {
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
-			if (env.IsDevelopment()) {
-				app.UseDeveloperExceptionPage();
-			} else {
-				app.UseExceptionHandler("/Home/Error");
-				app.UseHsts();
-			}
+			//if (env.IsDevelopment()) {
+			//	app.UseDeveloperExceptionPage();
+			//} else {
+			//	app.UseExceptionHandler("/Home/Error");
+			//	app.UseHsts();
+			//}
+			app.UseDeveloperExceptionPage();
+			app.UseDatabaseErrorPage();
 
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
@@ -52,6 +54,7 @@ namespace AnalyzeWebSite {
 			});
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
+
 			app.UseFileServer(new FileServerOptions() {
 				FileProvider = new PhysicalFileProvider(
 							Path.Combine(env.ContentRootPath, "node_modules")

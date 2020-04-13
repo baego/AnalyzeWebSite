@@ -3,7 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ServerGarbageCollection>false</ServerGarbageCollection>
+    <UserSecretsId>67bf9b6a-3e36-48c2-855d-77e21b0a903d</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="web.config" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="node_modules\bootstrap\dist\css\bootstrap-grid.css" />
@@ -22,13 +27,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="jQuery" Version="3.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="logs\" />
     <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\logs\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -298,6 +306,12 @@
     <None Include="node_modules\jquery\src\wrap.js" />
     <None Include="wwwroot\css\custom.css" />
     <None Include="wwwroot\js\loadScripts.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Requirements\Requirements.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

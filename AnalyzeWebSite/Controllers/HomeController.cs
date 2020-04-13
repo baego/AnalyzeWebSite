@@ -13,21 +13,6 @@ namespace AnalyzeWebSite.Controllers {
 			return View();
 		}
 
-		public IActionResult History() {
-			return View();
-		}
-
-		public IActionResult Test() {
-			return View();
-		}
-
-		public IActionResult AboutYou() {
-			return View();
-		}
-		public IActionResult Author() {
-			return View();
-		}
-
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error() {
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

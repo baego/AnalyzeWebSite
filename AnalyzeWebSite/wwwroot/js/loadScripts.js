@@ -2,13 +2,17 @@
 //события при первой загрузке главной страницы
 $(window).ready(function () {
 
+	var pic = $(".magister-logo-pic");
+
+	if (document.documentElement.clientWidth > 990) {
+		pic.css("display", "block ");
+	}
 	//красивое появление надписи "добро пожаловать"
 	$("#hi").fadeIn("slow");
 
 	//наблюдение за изменением размера окна, чтобы убирать/добавлять картинку по необходимости
 	window.addEventListener(`resize`, event => {
 
-		var pic = $(".magister-logo-pic");
 
 		if (document.documentElement.clientWidth < 990) {
 
