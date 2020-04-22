@@ -1,0 +1,86 @@
+﻿
+@{
+	ViewData["Title"] = "О вас";
+}
+<script src="/node_modules/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="~/js/loadScripts.js"></script>
+<script type="text/javascript" src="~/js/accordeonScripts.js"></script>
+<link rel="stylesheet" href="~/css/accordeonStyles.css" />
+
+<h1 id="hi" class="index-hi" style="margin-top:10%">Расскажите о себе</h1>
+<p style="margin-top:30px">
+ На этой странице находится несколько опросов, а также раздел, в котором содержатся данные, которые мы уже получили.
+</p>
+
+<button class="accordion">Общая информация</button>
+<div class="panel">
+	<form>
+		<div class="form-group">
+			<label for="yourName">Представьтесь</label>
+			<input type="text" class="form-control" id="yourName" placeholder="Ваше имя">
+		</div>
+		<div class="form-group">
+			<label for="yourCity">Где вы живёте?</label>
+			<input type="text" class="form-control" id="yourCity" placeholder="Ваш город">
+		</div>
+		<div class="form-group">
+			<label for="yourYear">Введите год вашего рождения</label>
+			<input type="text" class="form-control" id="yourYear" placeholder="Год рождения">
+		</div>
+
+		<label for="degreeSelect">На какой ступени образования вы сейчас находитесь?</label>
+		<select class="form-control" id="degreeSelect">
+			<option>Абитуриент</option>
+			<option>Бакалавр</option>
+			<option>Магистр</option>
+			<option>Аспирант</option>
+		</select>
+		<div class="form-group" style="margin-top:10px">
+			<label for="yourOpinion">Что вы думаете о сайте?</label>
+			<textarea class="form-control rounded-0" id="yourOpinion" placeholder="Ваше мнение"rows="10"></textarea>
+		</div>
+		<button class="btn btn-primary">Отправить</button>
+	</form>
+</div>
+<button class="accordion">Ваше мнение о сайте</button>
+<div class="panel">
+	<label for="uiux">Как вы оцениваете интерфейс по 5-ти балльной шкале?</label>
+	<form id="uiux" style="display:inline">
+		<p><input name="dzen" type="radio" value="1"> 1</p>
+		<p><input name="dzen" type="radio" value="2"> 2</p>
+		<p><input name="dzen" type="radio" value="3" checked> 3</p>
+		<p><input name="dzen" type="radio" value="4"> 4</p>
+		<p><input name="dzen" type="radio" value="5"> 5</p>
+	</form>
+
+	<label for="func">Как вы оцениваете функциональность по 5-ти балльной шкале?</label>
+	<form id="func" style="display:inline">
+		<p><input name="dzen" type="radio" value="1"> 1</p>
+		<p><input name="dzen" type="radio" value="2"> 2</p>
+		<p><input name="dzen" type="radio" value="3" checked> 3</p>
+		<p><input name="dzen" type="radio" value="4"> 4</p>
+		<p><input name="dzen" type="radio" value="5"> 5</p>
+	</form>
+
+	<label for="uiux">Как вы оцениваете содержание сайта по 5-ти балльной шкале?</label>
+	<form id="uiux" style="display:inline">
+		<p><input name="dzen" type="radio" value="1"> 1</p>
+		<p><input name="dzen" type="radio" value="2"> 2</p>
+		<p><input name="dzen" type="radio" value="3" checked> 3</p>
+		<p><input name="dzen" type="radio" value="4"> 4</p>
+		<p><input name="dzen" type="radio" value="5"> 5</p>
+	</form>
+	<button class="btn btn-primary">Отправить</button>
+</div>
+<button class="accordion">Что мы о вас сейчас знаем?</button>
+<div class="panel">
+	<p>
+		<ul>
+			<li><strong>Ваше имя</strong> - Евгений</li>
+			<li><strong>Вы</strong> - аспирант</li>
+			<li><strong>IP-адрес</strong> - 173.9.278.82</li>
+			<li><strong>MAC-адрес</strong> - 00:26:57:00:1f:02</li>
+			<li><strong>Ваш браузер</strong> - Chrome/81.0.4044</li>
+		</ul>
+	</p>
+</div>

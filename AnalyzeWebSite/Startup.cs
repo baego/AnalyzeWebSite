@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using SmartBreadcrumbs.Extensions;
 
 namespace AnalyzeWebSite {
 	public class Startup {
@@ -28,6 +29,7 @@ namespace AnalyzeWebSite {
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
+			services.AddBreadcrumbs(GetType().Assembly);
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 		}

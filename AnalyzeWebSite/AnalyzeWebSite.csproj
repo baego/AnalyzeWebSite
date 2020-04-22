@@ -31,11 +31,12 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="SmartBreadcrumbs" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="logs\" />
-    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\images\bolognaWorldPics\" />
     <Folder Include="wwwroot\logs\" />
   </ItemGroup>
 
@@ -309,7 +310,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Requirements\Requirements.cshtml">
+    <Content Update="Views\Requirements\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

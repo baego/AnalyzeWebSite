@@ -39,4 +39,42 @@ ul.list-custom {
   display: none;
 }
 
+.img-block {
+  padding: 20px 5px 20px 5px;
+}
+  /* Стиль картинки на странице */
+  .img-block img {
+    width: 50%;
+    border: 2px solid #ccc;
+  }
+    /* Стиль картинки на странице при наведении */
+    .img-block img:hover {
+      border: 2px solid #D4DEE8;
+      cursor: pointer;
+    }
+/* Скрытый контейнер */
+#img-big-block {
+  position: fixed;
+  display: none;
+  left: 50%;
+  margin-left: -350px;
+  z-index: 999;
+  top: 100px;
+  border: 1px solid #D4DEE8;
+}
+
+.img-figure {
+  text-align: center;
+  font-style: italic;
+  margin-top: 0; 
+  margin-bottom: 5px;
+  color: #666; 
+}
+
+  .img-figure figcaption {
+    /*width: 40%;*/
+  }
+
+
+
 

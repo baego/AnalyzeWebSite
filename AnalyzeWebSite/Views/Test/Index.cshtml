@@ -1,0 +1,140 @@
+﻿@{
+	ViewData["Title"] = "Какую тему выбрать вам?";
+}
+
+<script src="/node_modules/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="~/js/loadScripts.js"></script>
+<script type="text/javascript" src="~/js/test.js"></script>
+<link rel="stylesheet" href="~/css/testStyles.css" />
+
+<h1 id="hi" class="index-hi" style="margin-top:10%">Какую тему для диссертации выбрать вам?</h1>
+<p style="margin-top:30px">Пройдите небольшой тест, в котором вам будут предложены несколько вариантов возможных тем для диссертации, подходящих вам.</p>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+<form id="regForm" action="">
+	<!-- One "tab" for each step in the form: -->
+	<div class="tab">
+		<div class="form-group">
+			<label for="degreeSelect">На какой ступени образования вы сейчас находитесь?</label>
+			<select class="form-control" id="degreeSelect">
+				<option>Абитуриент</option>
+				<option>Бакалавр</option>
+				<option>Магистр</option>
+				<option>Аспирант</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="tab">
+		<div class="form-group">
+			<label for="areaText">В какой области России вы живёте?</label>
+			<input type="text" class="form-control" id="areaText" aria-describedby="areaTextBox" placeholder="Введите область">
+
+			<label for="areaText">В каком городе России вы учитесь?</label>
+			<input type="text" class="form-control" id="areaText" aria-describedby="areaTextBox" placeholder="Введите город">
+		</div>
+
+		<div class="form-check-inline">
+			<label class="form-check-label" for="anotherCountryCheck">Другая страна?</label>
+			<input type="checkbox" class="custom-control-input" style="width:10%" id="anotherCountryCheck">
+		</div>
+
+	</div>
+
+	<div class="tab">
+		<div class="form-group">
+			<label for="degreeRouteSelect">Выберить ваше направление</label>
+			<select class="form-control" id="degreeRouteSelect">
+				<option>Медицинские науки — 14.00.00</option>
+				<option>Биологические науки — 03.00.00</option>
+				<option>Экономические науки — 08.00.00</option>
+				<option>Юридические науки — 12.00.00</option>
+				<option>Педагогические науки — 13.00.00</option>
+				<option>Психологические науки — 19.00.00</option>
+				<option>Исторические науки — 07.00.00</option>
+				<option>Социологические науки — 22.00.00</option>
+				<option>Философские науки — 09.00.00</option>
+				<option>Политические науки — 23.00.00</option>
+				<option>Искусствоведение — 17.00.00</option>
+				<option>Архитектура — 18.00.00</option>
+				<option>Ветеринарные науки — 16.00.00</option>
+				<option>Науки о Земле — 25.00.00</option>
+				<option>Геолого-минералогические науки — 04.00.00</option>
+				<option>Географические науки — 11.00.00</option>
+				<option>Химические науки — 02.00.00</option>
+				<option>Ветеринарные науки — 16.00.00</option>
+				<option>Культурология — 24.00.00</option>
+				<option>Фармацевтические науки — 15.00.00</option>
+				<option>Военные науки — 20.00.00</option>
+				<option>Филологические науки — 10.00.00</option>
+				<option>Технические науки — 05.00.00</option>
+				<option>Физико-математические науки — 01.00.00</option>
+				<option>Другие cпециальности — 00.00.00</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="tab">
+
+		<div class="form-group">
+			<label for="areaText">Связаны ли вы с каким-либо предприятием по вашей специальности? Если нет, введите "нет"</label>
+			<input type="text" class="form-control" id="areaText" aria-describedby="areaTextBox" placeholder="Введите название предприятия">
+		</div>
+
+	</div>
+	<div class="tab">
+		<div class="form-group">
+			<label for="degreeRouteSelect">Выберить вашу специализацию в рамках направления "Медицинские науки":</label>
+			<select class="form-control" id="degreeRouteSelect">
+				<option>Хирургия</option>
+				<option>Внутренние болезни</option>
+				<option>Кардиология</option>
+				<option>Акушерство и гинекология</option>
+				<option>Педиатрия</option>
+				<option>Стоматология</option>
+				<option>Общественное здоровье и здравоохранение</option>
+				<option>Патологическая физиология</option>
+				<option>Нервные болезни</option>
+				<option>Фармакология, клиническая фармакология</option>
+				<option>Онкология</option>
+				<option>Аллергология и иммулология</option>
+				<option>Восстановительная медицина, спортивная медицина, курортология и физиотерапия</option>
+				<option>Гигиена</option>
+				<option>Лучевая диагностика, лучевая терапия</option>
+				<option>Травматология и ортопедия</option>
+				<option>Психиатрия</option>
+				<option>Анестезиология и реаниматология</option>
+				<option>Глазные болезни</option>
+			</select>
+		</div>
+	</div>
+	<div class="tab">
+		<p>
+			<label>Мы подобрали несколько вариантов по специализации "Кардиология" для вас:</label>
+			<ul>
+				<li>Влияние таурина на диастолическую функцию миокарда левого желудочка у больных ишемической болезнью, осложненной хронической сердечной недостаточностью</li>
+				<li>Cтентирование коронарных артерий у больных с ишемической болезнью сердца и онкопатологией</li>
+				<li>Фармакогенетические аспекты антикоагулянтной терапии варфарином у пациентов после протезирования клапанов сердца в условиях полифармакотерапии</li>
+				<li>Эффективность мероприятий по модификации образа жизни в профилактике артериальной гипертонии в организованной популяции</li>
+				<li>Оценка риска развития сахарного диабета у мужчин с различным уровнем сердечно-сосудистого риска</li>
+			</ul>
+		</p>
+	</div>
+		<div id="buttons" style="overflow:auto;">
+			<div style="float:right;">
+				<button class="btn btn-outline-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
+				<button class="btn btn-primary" type="button" id="nextBtn" onclick="nextPrev(1)">Далее</button>
+			</div>
+		</div>
+		<!-- Circles which indicates the steps of the form: -->
+		<div style="text-align:center;margin-top:40px;">
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+		</div>
+</form>
+
+

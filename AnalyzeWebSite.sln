@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyzeWebSite", "AnalyzeWebSite\AnalyzeWebSite.csproj", "{5829E115-A736-4A3F-B9DE-EF3C9AAF2F1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalyzeWebSite", "AnalyzeWebSite\AnalyzeWebSite.csproj", "{5829E115-A736-4A3F-B9DE-EF3C9AAF2F1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,10 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AnalyzeWebSite.Models;
+using SmartBreadcrumbs.Attributes;
 
 namespace AnalyzeWebSite.Controllers {
 	public class HomeController : Controller {
 
+		[DefaultBreadcrumb("Главная")]
 		public IActionResult Index() {
 			return View();
 		}
