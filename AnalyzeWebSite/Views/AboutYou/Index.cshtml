@@ -2,14 +2,34 @@
 @{
 	ViewData["Title"] = "О вас";
 }
-<script src="/node_modules/jquery/dist/jquery.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+	(function (m, e, t, r, i, k, a) {
+		m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+		m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+	})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+	ym(62290795, "init", {
+		clickmap: true,
+		trackLinks: true,
+		accurateTrackBounce: true,
+		webvisor: true
+	});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
 <script type="text/javascript" src="~/js/accordeonScripts.js"></script>
+<script type="text/javascript" src="~/js/spyLib/gatherInformation.js"></script>
+<script type="text/javascript" src="~/js/spyLib/geo.js"></script>
 <link rel="stylesheet" href="~/css/accordeonStyles.css" />
 
 <h1 id="hi" class="index-hi" style="margin-top:10%">Расскажите о себе</h1>
 <p style="margin-top:30px">
- На этой странице находится несколько опросов, а также раздел, в котором содержатся данные, которые мы уже получили.
+	На этой странице находится несколько опросов, а также раздел, в котором содержатся данные, которые мы уже получили.
 </p>
 
 <button class="accordion">Общая информация</button>
@@ -37,7 +57,7 @@
 		</select>
 		<div class="form-group" style="margin-top:10px">
 			<label for="yourOpinion">Что вы думаете о сайте?</label>
-			<textarea class="form-control rounded-0" id="yourOpinion" placeholder="Ваше мнение"rows="10"></textarea>
+			<textarea class="form-control rounded-0" id="yourOpinion" placeholder="Ваше мнение" rows="10"></textarea>
 		</div>
 		<button class="btn btn-primary">Отправить</button>
 	</form>
@@ -72,15 +92,12 @@
 	</form>
 	<button class="btn btn-primary">Отправить</button>
 </div>
-<button class="accordion">Что мы о вас сейчас знаем?</button>
+<button id="aboutYouInfo" class="accordion">Что мы о вас сейчас знаем?</button>
 <div class="panel">
 	<p>
 		<ul>
-			<li><strong>Ваше имя</strong> - Евгений</li>
-			<li><strong>Вы</strong> - аспирант</li>
-			<li><strong>IP-адрес</strong> - 173.9.278.82</li>
-			<li><strong>MAC-адрес</strong> - 00:26:57:00:1f:02</li>
-			<li><strong>Ваш браузер</strong> - Chrome/81.0.4044</li>
+			<li>Ваш IP-адрес - <strong id="ipSign"></strong> </li>
+			<li>Ваше местоположение - <strong id="mapholder"></strong></li>
 		</ul>
 	</p>
 </div>

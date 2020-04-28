@@ -2,16 +2,30 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AnalyzeWebSite.Models;
 using SmartBreadcrumbs.Attributes;
+using AnalyzeWebSite.Data;
+using AnalyzeWebSite.Services;
+using Microsoft.AspNetCore.Http;
+//using AnalyzeWebSite.Data.Entities;
 
 namespace AnalyzeWebSite.Controllers {
 	public class HomeController : Controller {
 
+		
+
 		[DefaultBreadcrumb("Главная")]
 		public IActionResult Index() {
+
+			return View();
+		}
+
+		[Breadcrumb("В мире", FromAction = "Index")]
+		public IActionResult Cookies() {
+
 			return View();
 		}
 

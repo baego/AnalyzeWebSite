@@ -2,10 +2,27 @@
 	ViewData["Title"] = "Какую тему выбрать вам?";
 }
 
-<script src="/node_modules/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
 <script type="text/javascript" src="~/js/test.js"></script>
 <link rel="stylesheet" href="~/css/testStyles.css" />
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+	(function (m, e, t, r, i, k, a) {
+	m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+		m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+	})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+	ym(62290795, "init", {
+		clickmap: true,
+		trackLinks: true,
+		accurateTrackBounce: true,
+		webvisor: true
+	});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
 <h1 id="hi" class="index-hi" style="margin-top:10%">Какую тему для диссертации выбрать вам?</h1>
 <p style="margin-top:30px">Пройдите небольшой тест, в котором вам будут предложены несколько вариантов возможных тем для диссертации, подходящих вам.</p>
@@ -121,20 +138,20 @@
 			</ul>
 		</p>
 	</div>
-		<div id="buttons" style="overflow:auto;">
-			<div style="float:right;">
-				<button class="btn btn-outline-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
-				<button class="btn btn-primary" type="button" id="nextBtn" onclick="nextPrev(1)">Далее</button>
-			</div>
+	<div id="buttons" style="overflow:auto;">
+		<div style="float:right;">
+			<button class="btn btn-outline-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
+			<button class="btn btn-primary" type="button" id="nextBtn" onclick="nextPrev(1)">Далее</button>
 		</div>
-		<!-- Circles which indicates the steps of the form: -->
-		<div style="text-align:center;margin-top:40px;">
-			<span class="step"></span>
-			<span class="step"></span>
-			<span class="step"></span>
-			<span class="step"></span>
-			<span class="step"></span>
-		</div>
+	</div>
+	<!-- Circles which indicates the steps of the form: -->
+	<div style="text-align:center;margin-top:40px;">
+		<span class="step"></span>
+		<span class="step"></span>
+		<span class="step"></span>
+		<span class="step"></span>
+		<span class="step"></span>
+	</div>
 </form>
 
 

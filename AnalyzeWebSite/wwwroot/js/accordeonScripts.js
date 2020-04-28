@@ -12,5 +12,17 @@
 				panel.style.display = "block";
 			}
 		});
+
+		if (document.getElementsByClassName("accordion")[i].id === "aboutYouInfo") {
+
+			var ip = "";
+
+			getIp("", function (data) {
+				ip = data;
+			});
+
+			$("#ipSign").text(ip);
+
+		}
 	}
 })

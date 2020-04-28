@@ -1,18 +1,32 @@
 ﻿@{
 	ViewData["Title"] = "Моя магистерская диссертация";
 }
-<script src="/node_modules/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
-<script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+	(function (m, e, t, r, i, k, a) {
+		m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+		m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+	})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
+	ym(62290795, "init", {
+		clickmap: true,
+		trackLinks: true,
+		accurateTrackBounce: true,
+		webvisor: true
+	});
 </script>
-
+<noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <div class="container">
 	<div class="col-md-6">
 		<h1 id="hi" class="index-hi">Добро пожаловать!</h1>
 		<p style="margin-top:30px">Этот сайт посвящен такому явлению, как <strong>магистерская диссертация</strong>. Здесь вы можете узнать об истории этого вида квалификационной работы, прочитать о требованиях, предъявляемых к магистерским диссертациям, а также пройти небольшой тест и узнать, какие темы диссертаций популярны в вашем направлении.</p>
 		<p>Проект создан в рамках выполнения моей собственной магистерской диссертации. Я исследую методы и возможности сбора данных о пользователях при работе в Интернете. Подробнее об этом вы можете прочитать в разделе <a href="@Url.Action("Index", "Author")">об авторе</a>.</p>
-		<p>Немногие знают, что степень магистра в России выдавали еще в XVIII-ом веке, а также что степень магистра в настоящий момент является минимальной учёной степенью. Подробнее узнать про историю Болонской системы, её существование в России сейчас и раньше можно в разделе <a href="@Url.Action("Index", "History")">исторической справки</a></p>
+		<p>Немногие знают, что степень магистра в России выдавали еще в XVIII-ом веке, а также что степень магистра в настоящий момент является минимальной учёной степенью. Подробнее узнать про историю Болонской системы, её существование в России сейчас и раньше можно в разделе <a href="@Url.Action("Index", "History")">исторической справки</a>.</p>
 		<p>Пройти тест и узнать, какие темы для магистерской диссертации часто выбирают по вашему направлению вы можете на странице <a href="@Url.Action("Index", "Test")">тест</a>.</p>
 		<p>Заполнить форму обратной связи, узнать, какие данные о вас уже были собраны и оставить своё мнение про сайт вы можете на странице <a href="@Url.Action("Index", "AboutYou")">о вaс</a>.</p>
 		<div>
