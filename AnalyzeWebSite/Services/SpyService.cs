@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AnalyzeWebSite.Data;
+using AnalyzeWebSite.Data.SpyEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,105 +9,170 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AnalyzeWebSite.Services {
+
 	public class SpyService {
-	}
 
-	class TestIPAddress {
+		/// <summary>
+		/// Метод проверяет наличие данного IP в базе
+		/// </summary>
+		/// <param name="ip"></param>
+		public void CheckIp(string ip) {
 
-		/**
-      * The IPAddresses method obtains the selected server IP address information.
-      * It then displays the type of address family supported by the server and its 
-      * IP address in standard and byte format.
-      **/
-		private static void IPAddresses(string server) {
+			CheckIpInDb(ip);
+		}
+
+		/// <summary>
+		/// Метод записывает текущее местоположение пользователя в базу
+		/// </summary>
+		/// <param name="geo"></param>
+		/// <param name="ip"></param>
+		public void WriteGeo(string geo, string ip) {
+
+			WriteGeoInDb(geo, ip);
+		}
+
+		/// <summary>
+		/// Метод записывает браузер пользователя в базу
+		/// </summary>
+		/// <param name="browser"></param>
+		/// <param name="ip"></param>
+		public void WriteBrowser(string browser, string ip) {
+
+			WriteBrowserInDb(browser, ip);
+		}
+
+		/// <summary>
+		/// Логирование покидания страницы
+		/// </summary>
+		/// <param name="time"></param>
+		/// <param name="page"></param>
+		/// <param name="ip"></param>
+		public void WriteExit(int time, string page, string ip) {
+
+			WriteExitInDb(time, page, ip);
+		}
+
+		/// <summary>
+		/// Приватный метод записи браузера в базу
+		/// </summary>
+		/// <param name="browser"></param>
+		/// <param name="ip"></param>
+		private void WriteBrowserInDb(string browser, string ip) {
+
 			try {
-				System.Text.ASCIIEncoding ASCII = new System.Text.ASCIIEncoding();
 
-				// Get server related information.
-				IPHostEntry heserver = Dns.GetHostEntry(server);
+				using (var spyDB = new SpyContext()) {
 
-				// Loop on the AddressList
-				foreach (IPAddress curAdd in heserver.AddressList) {
+					//достанем предыдущий браузер этого пользователя
+					var previousBrowsers = spyDB.Browsers
+																			 .Where(x => x.UserId == ip)
+																			 //отсорутируем по убыванию даты
+																			 .OrderByDescending(y => y.Date)
+																			 .ToList();
 
+					//если видим этот IP впервые или браузер не совпадает с предыдущим, то запишем
+					if (previousBrowsers.Count == 0 || previousBrowsers[0].Browser != browser) {
 
-					// Display the type of address family supported by the server. If the
-					// server is IPv6-enabled this value is: InterNetworkV6. If the server
-					// is also IPv4-enabled there will be an additional value of InterNetwork.
-					Console.WriteLine("AddressFamily: " + curAdd.AddressFamily.ToString());
-
-					// Display the ScopeId property in case of IPV6 addresses.
-					if (curAdd.AddressFamily.ToString() == ProtocolFamily.InterNetworkV6.ToString())
-						Console.WriteLine("Scope Id: " + curAdd.ScopeId.ToString());
-
-
-					// Display the server IP address in the standard format. In 
-					// IPv4 the format will be dotted-quad notation, in IPv6 it will be
-					// in in colon-hexadecimal notation.
-					Console.WriteLine("Address: " + curAdd.ToString());
-
-					// Display the server IP address in byte format.
-					Console.Write("AddressBytes: ");
-
-					Byte[] bytes = curAdd.GetAddressBytes();
-					for (int i = 0; i < bytes.Length; i++) {
-						Console.Write(bytes[i]);
+						spyDB.Browsers.Add(new Browsers { Browser = browser, UserId = ip, Date = DateTime.Now });
+						spyDB.SaveChanges();
 					}
-
-					Console.WriteLine("\r\n");
 				}
-			} catch (Exception e) {
-				Console.WriteLine("[DoResolve] Exception: " + e.ToString());
+
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
 			}
 		}
 
-		// This IPAddressAdditionalInfo displays additional server address information.
-		private static void IPAddressAdditionalInfo() {
+		/// <summary>
+		/// Приватный метод записи геолокации в БД
+		/// </summary>
+		/// <param name="geo"></param>
+		/// <param name="ip"></param>
+		private void WriteGeoInDb(string geo, string ip) {
+
 			try {
-				// Display the flags that show if the server supports IPv4 or IPv6
-				// address schemas.
-				Console.WriteLine("\r\nSupportsIPv4: " + Socket.SupportsIPv4);
-				Console.WriteLine("SupportsIPv6: " + Socket.SupportsIPv6);
 
-				if (Socket.SupportsIPv6) {
-					// Display the server Any address. This IP address indicates that the server 
-					// should listen for client activity on all network interfaces. 
-					Console.WriteLine("\r\nIPv6Any: " + IPAddress.IPv6Any.ToString());
+				using (var spyDB = new SpyContext()) {
 
-					// Display the server loopback address. 
-					Console.WriteLine("IPv6Loopback: " + IPAddress.IPv6Loopback.ToString());
+					//достанем предыдущее местонахождение этого пользователя
+					var previousLocations = spyDB.Geolocations
+																			 .Where(x => x.UserId == ip)
+																			 //отсорутируем по убыванию даты
+																			 .OrderByDescending(y => y.Date)
+																			 .ToList();
 
-					// Used during autoconfiguration first phase.
-					Console.WriteLine("IPv6None: " + IPAddress.IPv6None.ToString());
+					//если видим этот IP впервые или местоположение не совпадает с предыдущим, то запишем
+					if (previousLocations.Count== 0 || previousLocations[0].Location != geo) {
 
-					Console.WriteLine("IsLoopback(IPv6Loopback): " + IPAddress.IsLoopback(IPAddress.IPv6Loopback));
+						spyDB.Geolocations.Add(new Geolocations { Location = geo, UserId = ip, Date = DateTime.Now });
+						spyDB.SaveChanges();
+					}
 				}
-				Console.WriteLine("IsLoopback(Loopback): " + IPAddress.IsLoopback(IPAddress.Loopback));
-			} catch (Exception e) {
-				Console.WriteLine("[IPAddresses] Exception: " + e.ToString());
+
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
 			}
 		}
 
-		public static void fffff() {
-			string server = null;
-			string[] args = new string[1];
+		/// <summary>
+		/// Приватный метод проверки IP в БД
+		/// </summary>
+		/// <param name="ip"></param>
+		/// <returns></returns>
+		private void CheckIpInDb(string ip) {
 
-			// Define a regular expression to parse user's input.
-			// This is a security check. It allows only
-			// alphanumeric input string between 2 to 40 character long.
-			Regex rex = new Regex(@"^[a-zA-Z]\w{1,39}$");
+			try {
+				using (var spyDB = new SpyContext()) {
+					var user = spyDB.Users.Where(x => x.IP == ip).ToList();
 
-		
-				server = Dns.GetHostName();
-				//if (!(rex.Match(server)).Success) {
-				//	Console.WriteLine("Input string format not allowed.");
-				//	return;
-				//}
+					if (user.Count() == 0) {
 
-			// Get the list of the addresses associated with the requested server.
-			IPAddresses(server);
+						WriteIpInDb(ip, spyDB);
+					}
+				}
+			} catch (Exception ex) {
 
-			// Get additional address information.
-			//IPAddressAdditionalInfo();
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
+			}
+		}
+
+		/// <summary>
+		/// Запись IP в БД
+		/// </summary>
+		/// <param name="ip"></param>
+		private void WriteIpInDb(string ip, SpyContext spyDB) {
+			try {
+				spyDB.Users.Add(new Users { IP = ip, CreateDate = DateTime.Now });
+				spyDB.SaveChanges();
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
+
+			}
+		}
+
+		/// <summary>
+		/// Запись IP в БД
+		/// </summary>
+		/// <param name="ip"></param>
+		private void WriteExitInDb(int time, string page, string ip) {
+			try {
+				using (var spyDB = new SpyContext()) {
+
+					decimal timeDec = time / 1000;
+
+					time = Convert.ToInt32(Math.Round(timeDec));
+					spyDB.ExitLog.Add(new ExitLog { Page = page, UserId = ip, Date = DateTime.Now, Time = time });
+					spyDB.SaveChanges();
+				}
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
+
+			}
 		}
 	}
+
 }

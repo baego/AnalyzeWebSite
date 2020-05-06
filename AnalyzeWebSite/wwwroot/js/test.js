@@ -4,20 +4,23 @@ showTab(currentTab);
 function showTab(n) {
 
 	$(window).ready(function () {
-		
-		var x = document.getElementsByClassName("tab");
-		x[n].style.display = "block";
+		let degrs = new Object();
+
+		var tab = document.getElementsByClassName("tab");
+		tab[n].style.display = "block";
 
 		//появление и смена надписей на кнопках
 		if (n === 0) {
+
 			document.getElementById("prevBtn").style.display = "none";
 		} else {
+
 			document.getElementById("prevBtn").style.display = "inline";
 		}
-		if (n === (x.length - 1)) {
-			//пока так, для демонстрационной версии
-			document.getElementById("nextBtn").style.display = "none";
-			//document.getElementById("nextBtn").innerHTML = "Принять";
+		if (n === (tab.length - 1)) {
+
+			document.getElementById("nextBtn").innerHTML = "Принять";
+			document.getElementById("nextBtn").type = "submit";
 		} else {
 			document.getElementById("nextBtn").innerHTML = "Далее";
 		}
@@ -30,6 +33,7 @@ function showTab(n) {
 function nextPrev(n) {
 	
 	var x = document.getElementsByClassName("tab");
+
 	// если что-то не так, то сразу выход
 	if (n === 1 && !validateForm()) return false;
 
@@ -47,7 +51,7 @@ function nextPrev(n) {
 	showTab(currentTab);
 }
 
-//валидацтя
+//валидация
 function validateForm() {
 	var x, y, i, valid = true;
 	x = document.getElementsByClassName("tab");

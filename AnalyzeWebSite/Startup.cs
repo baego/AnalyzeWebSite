@@ -32,9 +32,7 @@ namespace AnalyzeWebSite {
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 			
-
 			services.AddBreadcrumbs(GetType().Assembly);
-
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 		}
 

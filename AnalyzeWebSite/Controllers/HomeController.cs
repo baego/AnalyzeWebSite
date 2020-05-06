@@ -23,7 +23,7 @@ namespace AnalyzeWebSite.Controllers {
 			return View();
 		}
 
-		[Breadcrumb("В мире", FromAction = "Index")]
+		[Breadcrumb("Куки", FromAction = "Index")]
 		public IActionResult Cookies() {
 
 			return View();

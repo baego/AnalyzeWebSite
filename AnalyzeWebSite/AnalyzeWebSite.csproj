@@ -32,13 +32,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.1" />
     <PackageReference Include="SmartBreadcrumbs" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\SiteEntites\" />
-    <Folder Include="Data\SpyEntities\" />
     <Folder Include="logs\" />
     <Folder Include="wwwroot\images\bolognaWorldPics\" />
     <Folder Include="wwwroot\logs\" />

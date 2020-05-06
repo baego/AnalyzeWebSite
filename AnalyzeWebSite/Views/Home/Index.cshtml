@@ -4,6 +4,7 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
+
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 	(function (m, e, t, r, i, k, a) {
@@ -19,6 +20,9 @@
 		webvisor: true
 	});
 </script>
+<script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
+<script type="text/javascript" src="~/js/spyLib/collector.js"></script>
+<div id="pageId" style="display:none;">Main</div>
 <noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <div class="container">
@@ -36,12 +40,10 @@
 					<li>время пребывания на сайте и отдельных страницах</li>
 					<li>общее количество просмотров страниц</li>
 					<li>количество нажатых клавиш и их ценность</li>
-					<li>фокус внимания</li>
 					<li>количество сеансов на пользователя</li>
 					<li>количество ключевых действий пользователя за сеанс</li>
 					<li>частота применения кнопки «назад»</li>
 					<li>IP-адрес</li>
-					<li>MAC-адрес</li>
 					<li>геолокационные данные</li>
 					<li>данные об используемой ОС, браузере, параметрах оборудования</li>
 					<li>а также то, что вы предоставите через опрос и тест</li>
@@ -52,4 +54,11 @@
 	<div class="col-md-6">
 		<img class="magister-logo-pic" src="~/images/magister-logo.png" />
 	</div>
+</div>
+<div id="cookieBanner" class="cookie-message" style="background-color: #3b3b3b; transition: .55s opacity, .55s visibility;">
+	<h6 style="margin: 16px 16px 16px 16px;">
+		<p style="color:white;"><strong>На этом сайте собираются и используются cookie!</strong></p>
+		<p style="color:white;">Подробнее об этом можно прочитать <a href="@Url.Action("Cookies", "Home")" target="_blank">здесь</a></p>
+		<button class="btn btn-primary" onclick="cookieAgree()">Понятно</button>
+	</h6>
 </div>

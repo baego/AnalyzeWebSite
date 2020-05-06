@@ -2,6 +2,24 @@
 //события при первой загрузке главной страницы
 $(window).ready(function () {
 
+	var clock = new Date();
+	var start = clock.getTime();
+
+	window.onbeforeunload = function () {
+
+		var clock2 = new Date();
+		var end = clock2.getTime();
+		var diff = end - start;
+		var ip = getFromCookie('IPAdress');
+		var name = $("#pageId").text();
+		exitLog(diff, name, ip);
+	};
+
+	//если уже согласился на куки, то не показываем
+	if (document.cookie.includes('CookiesAgree')) {
+		$("#cookieBanner").css("display", "none");
+	}
+
 	var pic = $(".magister-logo-pic");
 
 	if (document.documentElement.clientWidth > 990) {
@@ -42,3 +60,11 @@ $(window).ready(function () {
 		$(this).fadeOut();
 	});
 });
+
+//баннер о куках
+function cookieAgree() {
+	document.cookie = "CookiesAgree=checked";
+	$("#cookieBanner").css("display", "none");
+
+}
+

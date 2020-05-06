@@ -20,13 +20,14 @@
 <noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-
+<script type="text/javascript" src="~/js/aboutYou.js"></script>
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
 <script type="text/javascript" src="~/js/accordeonScripts.js"></script>
-<script type="text/javascript" src="~/js/spyLib/gatherInformation.js"></script>
-<script type="text/javascript" src="~/js/spyLib/geo.js"></script>
-<link rel="stylesheet" href="~/css/accordeonStyles.css" />
 
+<link rel="stylesheet" href="~/css/accordeonStyles.css" />
+<script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
+<script type="text/javascript" src="~/js/spyLib/collector.js"></script>
+<div id="pageId" style="display:none;">AboutYou</div>
 <h1 id="hi" class="index-hi" style="margin-top:10%">Расскажите о себе</h1>
 <p style="margin-top:30px">
 	На этой странице находится несколько опросов, а также раздел, в котором содержатся данные, которые мы уже получили.
@@ -34,7 +35,7 @@
 
 <button class="accordion">Общая информация</button>
 <div class="panel">
-	<form>
+	<form action="AboutYou/Common" method="post">
 		<div class="form-group">
 			<label for="yourName">Представьтесь</label>
 			<input type="text" class="form-control" id="yourName" placeholder="Ваше имя">
@@ -64,40 +65,70 @@
 </div>
 <button class="accordion">Ваше мнение о сайте</button>
 <div class="panel">
-	<label for="uiux">Как вы оцениваете интерфейс по 5-ти балльной шкале?</label>
-	<form id="uiux" style="display:inline">
-		<p><input name="dzen" type="radio" value="1"> 1</p>
-		<p><input name="dzen" type="radio" value="2"> 2</p>
-		<p><input name="dzen" type="radio" value="3" checked> 3</p>
-		<p><input name="dzen" type="radio" value="4"> 4</p>
-		<p><input name="dzen" type="radio" value="5"> 5</p>
+	<div id="averageMessage"></div>
+	<form id="averageForm">
+		<label for="average">Какую общую оценку сайту вы бы поставили?</label>
+		<div id="average" style="display:inline">
+			<p><input name="average" type="radio" value="1"> 1</p>
+			<p><input name="average" type="radio" value="2"> 2</p>
+			<p><input name="average" type="radio" value="3" checked> 3</p>
+			<p><input name="average" type="radio" value="4"> 4</p>
+			<p><input name="average" type="radio" value="5"> 5</p>
+		</div>
+
+		<label for="uiux">Оцените дизайн сайта</label>
+		<div id="uiux" style="display:inline">
+			<p><input name="uiux" type="radio" value="1"> 1</p>
+			<p><input name="uiux" type="radio" value="2"> 2</p>
+			<p><input name="uiux" type="radio" value="3" checked> 3</p>
+			<p><input name="uiux" type="radio" value="4"> 4</p>
+			<p><input name="uiux" type="radio" value="5"> 5</p>
+		</div>
+
+		<label for="loadTime">Как быстро в среднем загружаются страницы сайта??</label>
+		<div id="loadTime" style="display:inline">
+			<p><input name="loadTime" type="radio" value="1">Моментально</p>
+			<p><input name="loadTime" type="radio" value="2">Довольно быстро, но не идеально</p>
+			<p><input name="loadTime" type="radio" value="3" checked>Нормально</p>
+			<p><input name="loadTime" type="radio" value="4">Довольно медленно</p>
+			<p><input name="loadTime" type="radio" value="5">Слишком медленно</p>
+		</div>
+
+		<label for="usability">Оцените удобство сайта:</label>
+		<div id="usability" style="display:inline">
+			<p><input name="usability" type="radio" value="1"> 1</p>
+			<p><input name="usability" type="radio" value="2"> 2</p>
+			<p><input name="usability" type="radio" value="3" checked> 3</p>
+			<p><input name="usability" type="radio" value="4"> 4</p>
+			<p><input name="usability" type="radio" value="5"> 5</p>
+		</div>
+
+		<label for="trust">Вызывает ли данный сайт доверие?</label>
+		<div id="trust" style="display:inline">
+			<p><input name="trust" type="radio" value="1" checked> Да</p>
+			<p><input name="trust" type="radio" value="2"> Нет</p>
+		</div>
+
+		<label for="errors">Много ли на сайте ошибок, недоработок?</label>
+		<div id="errors" style="display:inline">
+			<p><input name="errors" type="radio" value="1"> Да</p>
+			<p><input name="errors" type="radio" value="2" checked> Нет</p>
+			<p><input name="errors" type="radio" value="3"> Кое-что есть</p>
+		</div>
+
+		<div>
+			<button class="btn btn-primary" type="submit">Отправить</button>
+		</div>
 	</form>
 
-	<label for="func">Как вы оцениваете функциональность по 5-ти балльной шкале?</label>
-	<form id="func" style="display:inline">
-		<p><input name="dzen" type="radio" value="1"> 1</p>
-		<p><input name="dzen" type="radio" value="2"> 2</p>
-		<p><input name="dzen" type="radio" value="3" checked> 3</p>
-		<p><input name="dzen" type="radio" value="4"> 4</p>
-		<p><input name="dzen" type="radio" value="5"> 5</p>
-	</form>
-
-	<label for="uiux">Как вы оцениваете содержание сайта по 5-ти балльной шкале?</label>
-	<form id="uiux" style="display:inline">
-		<p><input name="dzen" type="radio" value="1"> 1</p>
-		<p><input name="dzen" type="radio" value="2"> 2</p>
-		<p><input name="dzen" type="radio" value="3" checked> 3</p>
-		<p><input name="dzen" type="radio" value="4"> 4</p>
-		<p><input name="dzen" type="radio" value="5"> 5</p>
-	</form>
-	<button class="btn btn-primary">Отправить</button>
 </div>
 <button id="aboutYouInfo" class="accordion">Что мы о вас сейчас знаем?</button>
 <div class="panel">
 	<p>
 		<ul>
-			<li>Ваш IP-адрес - <strong id="ipSign"></strong> </li>
-			<li>Ваше местоположение - <strong id="mapholder"></strong></li>
+			<li style="display: none" id="ipEl">Ваш IP-адрес - <strong id="ipSign"></strong> </li>
+			<li style="display: none" id="geoEl">Ваше местоположение - <strong id="mapholder"></strong></li>
+			<li style="display: none" id="browsEl">Ваш браузер - <strong id="brows"></strong></li>
 		</ul>
 	</p>
 </div>

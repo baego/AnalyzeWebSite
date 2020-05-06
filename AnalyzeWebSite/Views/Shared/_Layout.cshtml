@@ -2,6 +2,9 @@
 <html>
 <head>
 	<meta charset="utf-8" />
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="~/js/spyLib/collector.js"></script>
+	<script type="text/javascript" src="~/js/spyLib/geo.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@ViewData["Title"]</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -10,6 +13,12 @@
 
 </head>
 <body>
+	<script>
+		checkIp(checkData);
+		addEventListener("popstate", function (e) {
+			alert('yeees!');
+		}, false);
+	</script>	
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
 		<ul class="list-custom">
 			<li style="font-size: x-large;"><a href="@Url.Action("Index", "Home")"> <img src="~/images/magister-head.png" height="30" width="30" />&nbsp;Моя магистерская диссертация</a></li>
