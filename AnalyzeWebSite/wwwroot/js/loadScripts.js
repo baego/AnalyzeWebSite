@@ -4,7 +4,7 @@ $(window).ready(function () {
 
 	var clock = new Date();
 	var start = clock.getTime();
-
+	handleVisibilityChange();
 	window.onbeforeunload = function () {
 
 		var clock2 = new Date();
@@ -21,9 +21,10 @@ $(window).ready(function () {
 	}
 
 	var pic = $(".magister-logo-pic");
-
+	var cookie = $("#cookieBanner");
 	if (document.documentElement.clientWidth > 990) {
 		pic.css("display", "block ");
+		cookie.css("display", "block ");
 	}
 	//красивое появление заглавной надписи 
 	$("#hi").fadeIn("slow");
@@ -34,19 +35,27 @@ $(window).ready(function () {
 		//если совсем небольшой экран, вообще не показывать
 		if (document.documentElement.clientWidth < 990) {
 
+
 			if (!pic.is(":hidden"))
 				pic.hide("fast");
 
+			cookie.css("display", "none ");
 		} else {
 
 			if (pic.is(":hidden"))
 				pic.show("fast");
+
+			cookie.css("display", "block ");
 		}
 	}, false);
 
 	//для увеличения изображения
 	//TODO: поправить появление картинок
 	$('.img-block img').click(function () {
+
+		var ip = getFromCookie('IPAdress');
+
+		$.post(window.location.origin + "/Spy/Pics", { ip: ip, name: $(this).attr("src") });
 
 		var imgAddr = $(this).attr("src");
 		var width = (window.screen.width/100) * 50;
@@ -64,7 +73,10 @@ $(window).ready(function () {
 //баннер о куках
 function cookieAgree() {
 	document.cookie = "CookiesAgree=checked";
+
+	var ip = getFromCookie('IPAdress');
 	$("#cookieBanner").css("display", "none");
 
+	$.post(window.location.origin + "/Spy/CookieAgree", { ip: ip });
 }
 

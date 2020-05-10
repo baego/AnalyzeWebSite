@@ -12,5 +12,7 @@ namespace AnalyzeWebSite.Data.SpyEntities {
 		public string UserId { get; set; }
 		public string Location { get; set; }
 		public DateTime Date { get; set; }
+		public Guid? SessionId { get; set; }
+
 	}
 }

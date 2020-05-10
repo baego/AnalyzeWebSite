@@ -2,6 +2,9 @@
 @{
 	ViewData["Title"] = "Об авторе";
 }
+<script type="text/javascript">
+	var timerStart = Date.now();
+</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 	(function (m, e, t, r, i, k, a) {
@@ -24,8 +27,12 @@
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
 <script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
-<div id="pageId" style="display:none;">Author</div>
+<div id="pageId" style="display:none;">Об авторе</div>
 
+<script type="text/javascript" src="~/js/spyLib/focus.js"></script>
+<script type="text/javascript">
+	loadTime(timerStart);
+</script>
 <h1 id="hi" class="index-hi" style="margin-top:10%">Об авторе и проекте</h1>
 
 <p style="margin-top:30px">
@@ -35,8 +42,8 @@
 
 <p>Данный сайт представляет собой <strong>мою магистерскую диссертацию</strong> на тему разработки средства сбора данных для анализа действий пользователей.</p>
 <p>Тема веб-технологий давно интересует меня, например, моя бакалаврская выпускная квалификационная работа была посвящена теме агрегаторов новостей.</p>
-<p>В ней я разрабатывал веб-сайт, который получал новости через RSS-ленту, затем выделял в них ключевые новости и помещал в базу данных, а затем выводил пользователю, группируя по ключевым словам и рубрикам.</p>
-<p>В те далёкие времена я разрабатывал на ASP.NET MVC 5. К слову, этот опыт позволил мне устроиться на хорошую работу по специальности практически без собеседования!</p>
-<p>Этот же сайт куда больше похож на серьёзный проект, и сделан он уже на ASP.NET Core MVC (версии 2.1), в чем вы можете лично убедиться на <a href="https://github.com/baego/AnalyzeWebSite">Github</a>.</p>
-<p>Также я пользуюсь Bootstrap и jQuery, поскольку без них обойтись трудно (да и зачем ?).</p>
+<p>В ней был разработан веб-сайт, который получал новости через RSS-ленту, затем выделял в них ключевые новости и помещал в базу данных, а затем выводил пользователю, группируя по ключевым словам и рубрикам.</p>
+<p>В те далёкие времена я разрабатывал на ASP.NET MVC 5. К слову, этот опыт позволил мне быстро устроиться на работу по специальности.</p>
+<p>Этот же сайт куда больше похож на серьёзный проект, и сделан он уже на ASP.NET Core MVC (версии 2.1), в чем вы можете лично убедиться на <a target="_blank" id="externalToGithubFromAuthor" onclick="linkLogger(event)" href="https://github.com/baego/AnalyzeWebSite">Github</a>.</p>
+<p>Также используются Bootstrap и jQuery, поскольку без них обойтись трудно.</p>
 <p>Надеюсь, вы не устали от этих технических подробностей, мне остаётся лишь пожелать вам удачи в работе над вашими диссертациями!</p>

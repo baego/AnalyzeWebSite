@@ -2,6 +2,9 @@
 @{
 	ViewData["Title"] = "Требования к магистерской диссертации";
 }
+<script type="text/javascript">
+	var timerStart = Date.now();
+</script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
@@ -22,17 +25,22 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
+<script type="text/javascript" src="~/js/spyLib/focus.js"></script>
 <script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
-<div id="pageId" style="display:none;">Requirements</div>
+<div id="pageId" style="display:none;">Требования к магистерской диссертации</div>
+<script type="text/javascript">
+	loadTime(timerStart);
+</script>
 <h1 id="hi" class="index-hi" style="margin-top:10%">Требования к магистерской диссертации</h1>
 <p style="margin-top:30px">
 	Сразу стоит отметить, что в разных ВУЗах (и даже на разных кафедрах внутри одного ВУЗа) требования к оформлению и содержанию работы могут отличаться. Однако базовые требования к оформлению магистерской диссертации не меняются довольно давно, и представляют собой:
 	Требования делятся на два вида:
 	<ul>
-		<li><a href="@Url.Action("FormalizationRequirements", "Requirements")">по оформлению</a></li>
-		<li><a href="@Url.Action("ContentRequirements", "Requirements")">по содержанию</a></li>
-		<li><a href="@Url.Action("UsefulLinks", "Requirements")">полезные ссылки</a></li>
+		<li><a id="navigationToFormalRequirements" onclick="linkLogger(event)" href="@Url.Action("FormalizationRequirements", "Requirements")">по оформлению</a></li>
+		<li><a id="navigationToContentRequirements" onclick="linkLogger(event)" href="@Url.Action("ContentRequirements", "Requirements")">по содержанию</a></li>
+		<li><a id="navigationToUsefulLinks" onclick="linkLogger(event)" href="@Url.Action("UsefulLinks", "Requirements")">полезные ссылки</a></li>
 	</ul>
 </p>
 

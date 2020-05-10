@@ -1,6 +1,9 @@
 ﻿@{
 	ViewData["Title"] = "Болонская система в России";
 }
+<script type="text/javascript">
+	var timerStart = Date.now();
+</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 	(function (m, e, t, r, i, k, a) {
@@ -21,13 +24,17 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
-
+<script type="text/javascript">
+	loadTime(timerStart);
+</script>
 <h1 id="hi" class="index-hi" style="margin-top:10%">Болонская система в России</h1>
 
 <div id="img-big-block" style="display: none;"><img></div>
 <script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
-<div id="pageId" style="display:none;">BolognaRussia</div>
+<div id="pageId" style="display:none;">Болонская система в России</div>
+
+<script type="text/javascript" src="~/js/spyLib/focus.js"></script>
 <p>
 	Анонс внедрения Болонской системы в России <strong>состоялся в 2003 году</strong> на Европейском саммите министров образования в Берлине. Окончательно лишь после 31 декабря 2010 года квалификации (степени) бакалавра и магистра стали основными для выпускников российских вузов.
 </p>
@@ -60,7 +67,7 @@
 <p>
 	Материал подготовлен при помощи:
 	<ul>
-		<li><a href="http://www.ehea.info">Официальный сайт</a></li>
-		<li><a href="http://www.ru.wikipedia.org/wiki/Болонский_процесс">Википедия</a></li>
+		<li><a id="sourceToEheaFromBolognaRussia" onclick="linkLogger(event)" href="http://www.ehea.info">Официальный сайт</a></li>
+		<li><a target="_blank" id="sourceToWikiFromBolognaRussia" onclick="linkLogger(event)" href="http://www.ru.wikipedia.org/wiki/Болонский_процесс">Википедия</a></li>
 	</ul>
 </p>

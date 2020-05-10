@@ -36,7 +36,7 @@ function showPosition(position) {
 //если не дадут, вернём грустное сообщение
 function showError(error) {
 
-	var msg = "Не дано разрешение на получение геопозиции";
+	var msg = "Geolocation is not allowed!";
 	document.cookie = "Geography=" + msg;
 
 	sendGeographyToServer(msg);
@@ -47,5 +47,5 @@ function sendGeographyToServer(geography) {
 
 	var ipAddress = getFromCookie('IPAdress');
 
-	$.post("Spy/GetGeo", { geo: geography, ip: ipAddress });
+	$.post(window.location.origin + "/Spy/GetGeo", { geo: geography, ip: ipAddress });
 }

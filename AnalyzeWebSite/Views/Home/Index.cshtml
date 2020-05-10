@@ -1,8 +1,12 @@
 ﻿@{
 	ViewData["Title"] = "Моя магистерская диссертация";
 }
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
 
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+	var timerStart = Date.now();
+</script>
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
 
 <!-- Yandex.Metrika counter -->
@@ -22,27 +26,30 @@
 </script>
 <script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
-<div id="pageId" style="display:none;">Main</div>
+<script type="text/javascript" src="~/js/spyLib/focus.js"></script>
+<div id="pageId" style="display:none;">Главная</div>
 <noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<script type="text/javascript">
+	loadTime(timerStart);
+</script>
 <div class="container">
 	<div class="col-md-6">
 		<h1 id="hi" class="index-hi">Добро пожаловать!</h1>
-		<p style="margin-top:30px">Этот сайт посвящен такому явлению, как <strong>магистерская диссертация</strong>. Здесь вы можете узнать об истории этого вида квалификационной работы, прочитать о требованиях, предъявляемых к магистерским диссертациям, а также пройти небольшой тест и узнать, какие темы диссертаций популярны в вашем направлении.</p>
-		<p>Проект создан в рамках выполнения моей собственной магистерской диссертации. Я исследую методы и возможности сбора данных о пользователях при работе в Интернете. Подробнее об этом вы можете прочитать в разделе <a href="@Url.Action("Index", "Author")">об авторе</a>.</p>
-		<p>Немногие знают, что степень магистра в России выдавали еще в XVIII-ом веке, а также что степень магистра в настоящий момент является минимальной учёной степенью. Подробнее узнать про историю Болонской системы, её существование в России сейчас и раньше можно в разделе <a href="@Url.Action("Index", "History")">исторической справки</a>.</p>
-		<p>Пройти тест и узнать, какие темы для магистерской диссертации часто выбирают по вашему направлению вы можете на странице <a href="@Url.Action("Index", "Test")">тест</a>.</p>
-		<p>Заполнить форму обратной связи, узнать, какие данные о вас уже были собраны и оставить своё мнение про сайт вы можете на странице <a href="@Url.Action("Index", "AboutYou")">о вaс</a>.</p>
+		<p style="margin-top:30px">Этот сайт посвящен такому предмету, как <strong>магистерская диссертация</strong>. Здесь вы можете узнать об истории этого вида квалификационной работы, прочитать о требованиях, предъявляемых к магистерским диссертациям, а также пройти небольшой тест и узнать, какие темы диссертаций популярны в вашем направлении.</p>
+		<p>Рекомендуется построить ваше знакомство с сайтом таким образом: посещайте страницы в той последовательности, в которой они представлены в главном меню слева направо.</p>
+		<p>Проект создан в рамках выполнения моей собственной магистерской диссертации. Я исследую методы и возможности сбора данных о пользователях при работе в Интернете. Подробнее об этом вы можете прочитать в разделе <a id="navigateToAuthorFromMain" onclick="linkLogger(event)" href="@Url.Action("Index", "Author")">об авторе</a>.</p>
+		<p>Немногие знают, что степень магистра в России выдавали еще в XVIII-ом веке, а также что степень магистра в настоящий момент является минимальной учёной степенью. Подробнее узнать про историю Болонской системы, её существование в России сейчас и раньше можно в разделе <a id="navigateToHistoryFromMain" onclick="linkLogger(event)" href="@Url.Action("Index", "History")">исторической справки</a>.</p>
+		<p>Пройти тест и узнать, какие темы для магистерской диссертации часто выбирают по вашему направлению вы можете на странице <a id="navigateToTestFromMain" href="@Url.Action("Index", "Test")" onclick="linkLogger(event)">тест</a>.</p>
+		<p>Заполнить форму обратной связи, узнать, какие данные о вас уже были собраны и оставить своё мнение про сайт вы можете на странице <a id="navigateToYouFromMain" onclick="linkLogger(event)" href="@Url.Action("Index", "AboutYou")">о вaс</a>.</p>
 		<div>
 			<p>
 				Во время вашего нахождения на данном веб-сайте в учебных целях <strong>о вас будут собраны следующие данные</strong>:
 				<ul>
 					<li>время пребывания на сайте и отдельных страницах</li>
 					<li>общее количество просмотров страниц</li>
-					<li>количество нажатых клавиш и их ценность</li>
 					<li>количество сеансов на пользователя</li>
 					<li>количество ключевых действий пользователя за сеанс</li>
-					<li>частота применения кнопки «назад»</li>
 					<li>IP-адрес</li>
 					<li>геолокационные данные</li>
 					<li>данные об используемой ОС, браузере, параметрах оборудования</li>
@@ -52,13 +59,13 @@
 		</div>
 	</div>
 	<div class="col-md-6">
-		<img class="magister-logo-pic" src="~/images/magister-logo.png" />
+		<img class="magister-logo-pic" src="/images/magister-logo.png" />
 	</div>
 </div>
 <div id="cookieBanner" class="cookie-message" style="background-color: #3b3b3b; transition: .55s opacity, .55s visibility;">
 	<h6 style="margin: 16px 16px 16px 16px;">
 		<p style="color:white;"><strong>На этом сайте собираются и используются cookie!</strong></p>
-		<p style="color:white;">Подробнее об этом можно прочитать <a href="@Url.Action("Cookies", "Home")" target="_blank">здесь</a></p>
+		<p style="color:white;">Подробнее об этом можно прочитать <a id="navigateToCookieFromMain" onclick="linkLogger(event)" href="@Url.Action("Cookies", "Home")" target="_blank">здесь</a></p>
 		<button class="btn btn-primary" onclick="cookieAgree()">Понятно</button>
 	</h6>
 </div>

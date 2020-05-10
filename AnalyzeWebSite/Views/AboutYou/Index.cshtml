@@ -2,6 +2,9 @@
 @{
 	ViewData["Title"] = "О вас";
 }
+<script type="text/javascript">
+	var timerStart = Date.now();
+</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 	(function (m, e, t, r, i, k, a) {
@@ -19,6 +22,7 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<script type="text/javascript" src="~/js/spyLib/focus.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="~/js/aboutYou.js"></script>
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
@@ -27,10 +31,13 @@
 <link rel="stylesheet" href="~/css/accordeonStyles.css" />
 <script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
-<div id="pageId" style="display:none;">AboutYou</div>
+<script type="text/javascript">
+	loadTime(timerStart);
+</script>
+<div id="pageId" style="display:none;">О вас</div>
 <h1 id="hi" class="index-hi" style="margin-top:10%">Расскажите о себе</h1>
 <p style="margin-top:30px">
-	На этой странице находится несколько опросов, а также раздел, в котором содержатся данные, которые мы уже получили.
+	На этой странице находится несколько опросов на разные темы, где вы можете оставить свое мнение о дизайне, наполнении и работоспособности сайта.
 </p>
 
 <button class="accordion">Общая информация</button>
@@ -38,27 +45,32 @@
 	<form action="AboutYou/Common" method="post">
 		<div class="form-group">
 			<label for="yourName">Представьтесь</label>
-			<input type="text" class="form-control" id="yourName" placeholder="Ваше имя">
+			<input type="text" class="form-control" id="yourName" name="yourName" placeholder="Ваше имя">
 		</div>
 		<div class="form-group">
-			<label for="yourCity">Где вы живёте?</label>
-			<input type="text" class="form-control" id="yourCity" placeholder="Ваш город">
+			<label for="yourCity">В каком городе вы живёте?</label>
+			<input type="text" class="form-control" id="yourCity" name="yourCity" placeholder="Ваш город">
+		</div>
+		<div class="form-group">
+			<label for="yourCity">Направление обучения?</label>
+			<input type="text" class="form-control" id="direction" name="direction" placeholder="Ваш город">
 		</div>
 		<div class="form-group">
 			<label for="yourYear">Введите год вашего рождения</label>
-			<input type="text" class="form-control" id="yourYear" placeholder="Год рождения">
+			<input type="text" class="form-control" id="yourYear" name="yourYear" placeholder="Год рождения">
 		</div>
 
 		<label for="degreeSelect">На какой ступени образования вы сейчас находитесь?</label>
-		<select class="form-control" id="degreeSelect">
-			<option>Абитуриент</option>
-			<option>Бакалавр</option>
-			<option>Магистр</option>
-			<option>Аспирант</option>
+		<select class="form-control" id="degreeSelect" name="degreeSelect">
+			<option value="1" >Абитуриент</option>
+			<option value="2" >Бакалавр</option>
+			<option value="3" >Магистр</option>
+			<option value="4" >Аспирант</option>
+			<option value="5" >Иное</option>
 		</select>
 		<div class="form-group" style="margin-top:10px">
-			<label for="yourOpinion">Что вы думаете о сайте?</label>
-			<textarea class="form-control rounded-0" id="yourOpinion" placeholder="Ваше мнение" rows="10"></textarea>
+			<label for="yourOpinion">Что вы думаете о сайте (в целом)?</label>
+			<textarea class="form-control rounded-0" name="yourOpinion" id="yourOpinion" placeholder="Ваше мнение" rows="10"></textarea>
 		</div>
 		<button class="btn btn-primary">Отправить</button>
 	</form>

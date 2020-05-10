@@ -24,58 +24,88 @@ namespace AnalyzeWebSite.Services {
 		/// <summary>
 		/// Метод записывает текущее местоположение пользователя в базу
 		/// </summary>
-		/// <param name="geo"></param>
-		/// <param name="ip"></param>
-		public void WriteGeo(string geo, string ip) {
+		public void WriteGeo(string geo, string ip, Guid sessionId) {
 
-			WriteGeoInDb(geo, ip);
+			WriteGeoInDb(geo, ip, sessionId);
 		}
 
 		/// <summary>
 		/// Метод записывает браузер пользователя в базу
 		/// </summary>
-		/// <param name="browser"></param>
-		/// <param name="ip"></param>
-		public void WriteBrowser(string browser, string ip) {
+		public void WriteBrowser(string browser, string ip, Guid sessionId) {
 
-			WriteBrowserInDb(browser, ip);
+			WriteBrowserInDb(browser, ip, sessionId);
 		}
 
 		/// <summary>
 		/// Логирование покидания страницы
 		/// </summary>
-		/// <param name="time"></param>
-		/// <param name="page"></param>
-		/// <param name="ip"></param>
-		public void WriteExit(int time, string page, string ip) {
+		public void WriteExit(int time, string page, string ip, Guid sessionId) {
 
-			WriteExitInDb(time, page, ip);
+			WriteExitInDb(time, page, ip, sessionId);
+		}
+
+		/// <summary>
+		/// Логирование времени загрузки страницы
+		/// </summary>
+		public void WriteLoad(int time, string page, string ip, Guid sessionId) {
+
+			WriteLoadInDb(time, page, ip, sessionId);
+		}
+
+		/// <summary>
+		/// Создание сессии 
+		/// </summary>
+		public void CreateSession(string ip, Guid sessionId) {
+
+			CreateSessionInDb(ip, sessionId);
+		}
+		
+		/// <summary>
+		/// Логирование времени загрузки страницы
+		/// </summary>
+		public void WriteFocusLost(string page, string ip, Guid sessionId) {
+
+			WriteFocusLostInDb(page, ip, sessionId);
+		}
+		
+		/// <summary>
+		/// Логирование времени загрузки страницы
+		/// </summary>
+		public void CookieAgree(string ip, Guid sessionId) {
+
+			WriteCookieAgreeInDb(ip, sessionId);
+		}
+		
+		/// <summary>
+		/// Логирование времени загрузки страницы
+		/// </summary>
+		public void Links(string ip, string page, string source, string destination, int type, Guid sessionId) {
+
+			WriteLinksInDb(ip, page, source, destination, type, sessionId);
+		}
+		
+		/// <summary>
+		/// Логирование времени загрузки страницы
+		/// </summary>
+		public void Pics(string ip, string name, Guid sessionId) {
+
+			WritePicsInDb(ip, name, sessionId);
 		}
 
 		/// <summary>
 		/// Приватный метод записи браузера в базу
 		/// </summary>
-		/// <param name="browser"></param>
-		/// <param name="ip"></param>
-		private void WriteBrowserInDb(string browser, string ip) {
+		private void WriteBrowserInDb(string browser, string ip, Guid sessionId) {
 
 			try {
 
 				using (var spyDB = new SpyContext()) {
 
-					//достанем предыдущий браузер этого пользователя
-					var previousBrowsers = spyDB.Browsers
-																			 .Where(x => x.UserId == ip)
-																			 //отсорутируем по убыванию даты
-																			 .OrderByDescending(y => y.Date)
-																			 .ToList();
 
-					//если видим этот IP впервые или браузер не совпадает с предыдущим, то запишем
-					if (previousBrowsers.Count == 0 || previousBrowsers[0].Browser != browser) {
 
-						spyDB.Browsers.Add(new Browsers { Browser = browser, UserId = ip, Date = DateTime.Now });
-						spyDB.SaveChanges();
-					}
+					spyDB.Browsers.Add(new Browsers { Browser = browser, UserId = ip, Date = DateTime.Now, SessionId = sessionId });
+					spyDB.SaveChanges();
 				}
 
 			} catch (Exception ex) {
@@ -87,27 +117,14 @@ namespace AnalyzeWebSite.Services {
 		/// <summary>
 		/// Приватный метод записи геолокации в БД
 		/// </summary>
-		/// <param name="geo"></param>
-		/// <param name="ip"></param>
-		private void WriteGeoInDb(string geo, string ip) {
+		private void WriteGeoInDb(string geo, string ip, Guid sessionId) {
 
 			try {
 
 				using (var spyDB = new SpyContext()) {
 
-					//достанем предыдущее местонахождение этого пользователя
-					var previousLocations = spyDB.Geolocations
-																			 .Where(x => x.UserId == ip)
-																			 //отсорутируем по убыванию даты
-																			 .OrderByDescending(y => y.Date)
-																			 .ToList();
-
-					//если видим этот IP впервые или местоположение не совпадает с предыдущим, то запишем
-					if (previousLocations.Count== 0 || previousLocations[0].Location != geo) {
-
-						spyDB.Geolocations.Add(new Geolocations { Location = geo, UserId = ip, Date = DateTime.Now });
-						spyDB.SaveChanges();
-					}
+					spyDB.Geolocations.Add(new Geolocations { Location = geo, UserId = ip, Date = DateTime.Now, SessionId = sessionId });
+					spyDB.SaveChanges();
 				}
 
 			} catch (Exception ex) {
@@ -119,8 +136,6 @@ namespace AnalyzeWebSite.Services {
 		/// <summary>
 		/// Приватный метод проверки IP в БД
 		/// </summary>
-		/// <param name="ip"></param>
-		/// <returns></returns>
 		private void CheckIpInDb(string ip) {
 
 			try {
@@ -141,7 +156,6 @@ namespace AnalyzeWebSite.Services {
 		/// <summary>
 		/// Запись IP в БД
 		/// </summary>
-		/// <param name="ip"></param>
 		private void WriteIpInDb(string ip, SpyContext spyDB) {
 			try {
 				spyDB.Users.Add(new Users { IP = ip, CreateDate = DateTime.Now });
@@ -154,17 +168,141 @@ namespace AnalyzeWebSite.Services {
 		}
 
 		/// <summary>
-		/// Запись IP в БД
+		/// Запись события покидания страницы в БД
 		/// </summary>
-		/// <param name="ip"></param>
-		private void WriteExitInDb(int time, string page, string ip) {
+		private void WriteExitInDb(int time, string page, string ip, Guid sessionId) {
 			try {
 				using (var spyDB = new SpyContext()) {
 
 					decimal timeDec = time / 1000;
 
 					time = Convert.ToInt32(Math.Round(timeDec));
-					spyDB.ExitLog.Add(new ExitLog { Page = page, UserId = ip, Date = DateTime.Now, Time = time });
+					spyDB.ExitLog.Add(new ExitLog { Page = page, UserId = ip, Date = DateTime.Now, Time = time, SessionId = sessionId });
+					spyDB.SaveChanges();
+				}
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
+
+			}
+		}
+
+		/// <summary>
+		/// Запись времени загрузки страницы в БД
+		/// </summary>
+		private void WriteLoadInDb(int time, string page, string ip, Guid sessionId) {
+			try {
+				using (var spyDB = new SpyContext()) {
+
+					spyDB.PageLoadTimeLog.Add(new PageLoadTimeLog { Page = page, UserId = ip, Date = DateTime.Now, Time = time, SessionId = sessionId });
+					spyDB.SaveChanges();
+				}
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
+
+			}
+		}
+
+		/// <summary>
+		/// Запись времени загрузки страницы в БД
+		/// </summary>
+		private void CreateSessionInDb(string ip, Guid sessionId) {
+			try {
+				using (var spyDB = new SpyContext()) {
+
+					spyDB.Sessions.Add(new Sessions { Id = sessionId, UserId = ip, Date = DateTime.Now });
+					spyDB.SaveChanges();
+				}
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
+
+			}
+		}
+		
+		/// <summary>
+		/// Запись события потери фокуса
+		/// </summary>
+		private void WriteFocusLostInDb(string page, string ip, Guid sessionId) {
+			try {
+				using (var spyDB = new SpyContext()) {
+
+					spyDB.FocusLost.Add(new FocusLost { Page = page, SessionId = sessionId, UserId = ip, Date = DateTime.Now });
+					spyDB.SaveChanges();
+				}
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
+
+			}
+		}
+
+
+		/// <summary>
+		/// Запись согласия на куки в базу
+		/// </summary>
+		/// <param name="ip"></param>
+		/// <param name="sessionId"></param>
+		private void WriteCookieAgreeInDb(string ip, Guid sessionId) {
+
+			try {
+				using (var spyDB = new SpyContext()) {
+
+					spyDB.CookieAgree.Add(new CookieAgree { SessionId = sessionId, UserId = ip, Date = DateTime.Now });
+					spyDB.SaveChanges();
+				}
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
+
+			}
+		}
+
+		/// <summary>
+		/// Логгирование переходов по ссылкам в базе
+		/// </summary>
+		/// <param name="ip"></param>
+		/// <param name="page"></param>
+		/// <param name="source"></param>
+		/// <param name="destination"></param>
+		/// <param name="type"></param>
+		/// <param name="sessionId"></param>
+		private void WriteLinksInDb(string ip, string page, string source, string destination, int type, Guid sessionId) {
+
+			try {
+				using (var spyDB = new SpyContext()) {
+
+					spyDB.Links.Add(new Links {Page = page, Source = source,
+								Type = type, Destination = destination,
+								SessionId = sessionId, UserId = ip,
+								Date = DateTime.Now });
+					spyDB.SaveChanges();
+				}
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
+
+			}
+		}
+
+		/// <summary>
+		/// Запись клика по картинке в базу данных
+		/// </summary>
+		/// <param name="ip"></param>
+		/// <param name="page"></param>
+		/// <param name="source"></param>
+		/// <param name="destination"></param>
+		/// <param name="type"></param>
+		/// <param name="sessionId"></param>
+		private void WritePicsInDb(string ip, string name, Guid sessionId) {
+
+			try {
+				using (var spyDB = new SpyContext()) {
+
+					spyDB.Pics.Add(new Pics { Name = name,
+								SessionId = sessionId, UserId = ip,
+								Date = DateTime.Now });
 					spyDB.SaveChanges();
 				}
 			} catch (Exception ex) {

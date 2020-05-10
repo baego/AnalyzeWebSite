@@ -2,6 +2,9 @@
 @{
 	ViewData["Title"] = "Историческая справка";
 }
+<script type="text/javascript">
+	var timerStart = Date.now();
+</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 	(function (m, e, t, r, i, k, a) {
@@ -21,11 +24,15 @@
 <!-- /Yandex.Metrika counter -->
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
+<script type="text/javascript" src="~/js/spyLib/focus.js"></script>
+
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
 <script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
-<div id="pageId" style="display:none;">History</div>
-
+<div id="pageId" style="display:none;">Историческая справка</div>
+<script type="text/javascript">
+	loadTime(timerStart);
+</script>
 <h1 id="hi" class="index-hi" style="margin-top:10%">Историческая справка</h1>
 <p style="margin-top:30px">
 	Магистерская диссертация - часть образовательного процесса болонской системы. Являясь второй ступенью образования в ней, степень магистра в разное время являлась как самостоятельной учёной степенью, так и не признаваемым официально титулом.
@@ -33,9 +40,9 @@
 <p>
 	Данный раздел представляет собой историческую справку, разбитую на три части:
 	<ul>
-		<li><a href="@Url.Action("BolognaWorld", "History")">История болонской системы</a> - история появления и развития всей системы современного Европейского образования</li>
-		<li><a href="@Url.Action("BolognaRussia", "History")">Болонская система в России</a> - история внедрения болонской системы в Российскую систему обраования, достоинства и недостатки этого процесса</li>
-		<li><a href="@Url.Action("Dissertation", "History")">Защита диссертации</a> - описание процесса защиты диссертации и предшествующих ему действий</li>
+		<li><a id="navigationToBolognaWorld" onclick="linkLogger(event)" href="@Url.Action("BolognaWorld", "History")">История болонской системы</a> - история появления и развития всей системы современного Европейского образования</li>
+		<li><a id="navigationToBolognaRussia" onclick="linkLogger(event)" href="@Url.Action("BolognaRussia", "History")">Болонская система в России</a> - история внедрения болонской системы в Российскую систему обраования, достоинства и недостатки этого процесса</li>
+		<li><a id="navigationToDissertationHistory" onclick="linkLogger(event)" href="@Url.Action("Dissertation", "History")">Защита диссертации</a> - описание процесса защиты диссертации и предшествующих ему действий</li>
 	</ul>
 </p>
 

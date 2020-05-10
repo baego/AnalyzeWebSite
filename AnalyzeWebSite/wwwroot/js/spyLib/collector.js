@@ -15,9 +15,7 @@ function checkIp(callbackFunction) {
 //проверяет всю остальную информацию о пользователе
 function checkData() {
 
-	if (navigator.userAgent.search(/Android/i) === -1) {
-		checkGeo();
-	}
+	checkGeo();
 	checkBrowser();
 }
 
@@ -33,7 +31,7 @@ function getIp(callbackFunction) {
 		document.cookie = "IPAdress=" + address;
 		callbackFunction();
 		//отправляем в контроллер для обработки
-		$.post("Spy/GetIp", { ip: address });
+		$.post(window.location.origin + "/Spy/GetIp", { ip: address });
 	});
 }
 
@@ -41,7 +39,7 @@ function getIp(callbackFunction) {
 //достает ip из куки
 function getFromCookie(name) {
 	var value = "; " + document.cookie;
-	var parts = value.split("; "+ name + "=");
+	var parts = value.split("; " + name + "=");
 	if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
@@ -51,13 +49,14 @@ function checkBrowser() {
 
 		var ip = getFromCookie('IPAdress');
 
-			defineBrowser();
-			var browser = getFromCookie('Browser');
-			$.post("Spy/GetBrowser", { browser: browser, ip: ip });
+		defineBrowser();
+		var browser = getFromCookie('Browser');
+		$.post(window.location.origin + "/Spy/GetBrowser", { browser: browser, ip: ip });
 
 	}
 }
 
+//функция определяет браузер пользователя
 function defineBrowser() {
 	var a = "Some browser";
 
@@ -66,7 +65,7 @@ function defineBrowser() {
 	if (navigator.userAgent.search(/Firefox/) > 0) { a = 'Mozilla Firefox' };
 	if (navigator.userAgent.search(/MSIE/) > 0 || navigator.userAgent.search(/NET CLR /) > 0) { a = 'Internet Explorer' };
 	if (navigator.userAgent.search(/Chrome/) > 0) { a = 'Google Chrome' };
-	if (navigator.userAgent.search(/YaBrowser/) > 0) { a = 'Yandex Browsers' };
+	if (navigator.userAgent.search(/YaBrowser/) > 0) { a = 'Yandex Browser' };
 	if (navigator.userAgent.search(/OPR/) > 0) { a = 'Opera' };
 	if (navigator.userAgent.search(/Konqueror/) > 0) { a = 'Konqueror' };
 	if (navigator.userAgent.search(/Iceweasel/) > 0) { a = 'Debian Iceweasel' };

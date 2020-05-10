@@ -10,14 +10,11 @@
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 	<link rel="stylesheet" href="~/css/site.css" />
 	<link rel="stylesheet" href="~/css/custom.css" />
-
+	<link rel="shortcut icon" href="~/images/site-logo.png" type="image/png">
 </head>
 <body>
 	<script>
 		checkIp(checkData);
-		addEventListener("popstate", function (e) {
-			alert('yeees!');
-		}, false);
 	</script>	
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
 		<ul class="list-custom">
@@ -27,9 +24,7 @@
 			<li><a href="@Url.Action("Index", "Test")">Пройти тест</a></li>
 			<li><a href="@Url.Action("Index", "AboutYou")">О вaс</a></li>
 			<li><a href="@Url.Action("Index", "Author")">Об авторе</a></li>
-			<li>
-
-			</li>
+			<li><a href="@Url.Action("Index", "Portrait")">Портрет</a></li>
 		</ul>
 	</nav>
 	@if (ViewContext.RouteData.Values["controller"].ToString() != "Home") {
@@ -40,7 +35,7 @@
 	</div>
 	<hr />
 	<footer style="color:cornflowerblue; text-align:center">
-		<a href="https://github.com/baego/AnalyzeWebSite">Проект на Github&nbsp;<img src="~/images/githubLogo.svg" height="30" width="30" /></a>
+		<a id="externalToGithubFromFooter" target="_blank"  onclick="linkLogger(event)" href="https://github.com/baego/AnalyzeWebSite">Проект на Github&nbsp;<img src="~/images/githubLogo.svg" height="30" width="30" /></a>
 		<p>&copy; 2020 </p>
 	</footer>
 

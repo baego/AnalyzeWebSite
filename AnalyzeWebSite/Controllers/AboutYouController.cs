@@ -16,7 +16,13 @@ namespace AnalyzeWebSite.Controllers {
 		}
 
 		[HttpPost]
-		public string Submit(int average, int uiux, int loadTime, int usability, int trust, int errors) {
+		public string Common(string yourName, string yourCity, string direction, int yourYear, int degreeSelect, string yourOpinion) {
+
+			return "hello there";
+		}
+
+		[HttpPost]
+		public string Tedsdsd(int average, int uiux, int loadTime, int usability, int trust, int errors) {
 
 			return "hello there";
 		}

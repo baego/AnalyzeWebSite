@@ -1,6 +1,9 @@
 ﻿@{
 	ViewData["Title"] = "Куки";
 }
+<script type="text/javascript">
+	var timerStart = Date.now();
+</script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
@@ -24,6 +27,11 @@
 <script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
 <div id="pageId" style="display:none;">Cookie</div>
+<script type="text/javascript">
+	loadTime(timerStart);
+</script>
+
+<script type="text/javascript" src="~/js/spyLib/focus.js"></script>
 <h1 id="hi" class="index-hi">Что такое cookies?</h1>
 <p>
 	Куки (cookie, перевод — печенье) — данные, отправленные с сервера и хранимые на клиенте. Браузер вставляет их в хапрос на сервер при каждом действии пользователя. Применяется для сохранения данных на клиентской части приложения, на практике обычно используется для:

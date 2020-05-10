@@ -1,6 +1,9 @@
 ﻿@{
 	ViewData["Title"] = "История болонской системы";
 }
+<script type="text/javascript">
+	var timerStart = Date.now();
+</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 	(function (m, e, t, r, i, k, a) {
@@ -20,11 +23,14 @@
 <!-- /Yandex.Metrika counter -->
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
+<script type="text/javascript" src="~/js/spyLib/focus.js"></script>
 <script type="text/javascript" src="~/js/loadScripts.js"></script>
 <script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
-<div id="pageId" style="display:none;">BolognaWorld</div>
-
+<div id="pageId" style="display:none;">История болонской системы</div>
+<script type="text/javascript">
+	loadTime(timerStart);
+</script>
 <h1 id="hi" class="index-hi" style="margin-top:10%">История болонской системы</h1>
 
 <div id="img-big-block" style="display: none;"><img></div>
@@ -70,8 +76,8 @@
 <p>
 	Материал подготовлен при помощи:
 	<ul>
-		<li><a href="http://www.ehea.info">Официальный сайт</a></li>
-		<li><a href="http://www.ru.wikipedia.org/wiki/Болонский_процесс">Википедия</a></li>
+		<li><a target="_blank" id="SourceToEheaFromBolognaWorld" onclick="linkLogger(event)" href="http://www.ehea.info">Официальный сайт</a></li>
+		<li><a target="_blank" id="SourceToWikiFromBolognaWorld" onclick="linkLogger(event)" href="http://www.ru.wikipedia.org/wiki/Болонский_процесс">Википедия</a></li>
 	</ul>
 </p>
 
