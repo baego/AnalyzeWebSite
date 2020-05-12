@@ -2,26 +2,38 @@
 @{
 	ViewData["Title"] = "О вас";
 }
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166291616-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-166291616-1');
+	</script>
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function (m, e, t, r, i, k, a) {
+			m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+			m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+		})
+			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+		ym(62751832, "init", {
+			clickmap: true,
+			trackLinks: true,
+			accurateTrackBounce: true,
+			webvisor: true
+		});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/62751832" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->
+</head>
 <script type="text/javascript">
 	var timerStart = Date.now();
 </script>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-	(function (m, e, t, r, i, k, a) {
-		m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-		m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-	})
-		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-	ym(62290795, "init", {
-		clickmap: true,
-		trackLinks: true,
-		accurateTrackBounce: true,
-		webvisor: true
-	});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 <script type="text/javascript" src="~/js/spyLib/focus.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="~/js/aboutYou.js"></script>
@@ -39,10 +51,29 @@
 <p style="margin-top:30px">
 	На этой странице находится несколько опросов на разные темы, где вы можете оставить свое мнение о дизайне, наполнении и работоспособности сайта.
 </p>
+<script>
+	function submitMessage(form, e, name) {
+		var form = $(this);
+		e.preventDefault();
 
-<button class="accordion">Общая информация</button>
-<div class="panel">
-	<form action="AboutYou/Common" method="post">
+		$.ajax({
+			type: form.attr('method'),
+			data: form.serialize(),
+			dataType: "json",
+			url: form.attr('action'),
+			success: function (data) {
+				$("#" + name + "After").text(data);
+				form.css("display", "none");
+			}
+		});
+
+	}
+</script>
+<button class="accordion">Общая информация о вас</button>
+<div id="common" class="panel">
+	<div id="commonWere"></div>
+	<div id="commonAfter"></div>
+	<form id="commonForm" action="AboutYou/Common" onsubmit="submitMessage(this, 'common');return false;" method="post">
 		<div class="form-group">
 			<label for="yourName">Представьтесь</label>
 			<input type="text" class="form-control" id="yourName" name="yourName" placeholder="Ваше имя">
@@ -52,33 +83,43 @@
 			<input type="text" class="form-control" id="yourCity" name="yourCity" placeholder="Ваш город">
 		</div>
 		<div class="form-group">
-			<label for="yourCity">Направление обучения?</label>
-			<input type="text" class="form-control" id="direction" name="direction" placeholder="Ваш город">
+			<label for="yourYear">Введите год вашего рождения (цифрами)</label>
+			<input type="text" class="form-control" id="yourYear" name="yourYear" placeholder="Год рождения">
 		</div>
 		<div class="form-group">
-			<label for="yourYear">Введите год вашего рождения</label>
-			<input type="text" class="form-control" id="yourYear" name="yourYear" placeholder="Год рождения">
+			<label for="direction">С каким видом науки  можно связать вашу основную деятельность (учебную или рабочую)?</label>
+			<select class="form-control" id="direction" name="direction">
+				<option value="1">Естественные науки</option>
+				<option value="2">Медицинские науки</option>
+				<option value="3">Юридические науки</option>
+				<option value="4">Гумманитарные науки</option>
+				<option value="5">Физико-математические науки</option>
+				<option value="6">Технические науки</option>
+				<option value="7">Географические науки</option>
+				<option value="8">Иное</option>
+			</select>
 		</div>
 
 		<label for="degreeSelect">На какой ступени образования вы сейчас находитесь?</label>
 		<select class="form-control" id="degreeSelect" name="degreeSelect">
-			<option value="1" >Абитуриент</option>
-			<option value="2" >Бакалавр</option>
-			<option value="3" >Магистр</option>
-			<option value="4" >Аспирант</option>
-			<option value="5" >Иное</option>
+			<option value="1">Абитуриент</option>
+			<option value="2">Бакалавр</option>
+			<option value="3">Магистр</option>
+			<option value="4">Аспирант</option>
+			<option value="5">Иное</option>
 		</select>
-		<div class="form-group" style="margin-top:10px">
-			<label for="yourOpinion">Что вы думаете о сайте (в целом)?</label>
-			<textarea class="form-control rounded-0" name="yourOpinion" id="yourOpinion" placeholder="Ваше мнение" rows="10"></textarea>
+
+		<div style="margin-top:5px;">
+			<button class="btn btn-primary">Отправить</button>
 		</div>
-		<button class="btn btn-primary">Отправить</button>
 	</form>
 </div>
-<button class="accordion">Ваше мнение о сайте</button>
-<div class="panel">
-	<div id="averageMessage"></div>
-	<form id="averageForm">
+<button class="accordion">Ваше мнение о функционале и содержании сайта</button>
+<div id="functional" class="panel">
+	<div id="functionalWere"></div>
+	<div id="functionalAfter"></div>
+	<form id="functionalForm" method="post" onsubmit="submitMessage(this, 'functional');return false;" action="AboutYou/Functional">
+
 		<label for="average">Какую общую оценку сайту вы бы поставили?</label>
 		<div id="average" style="display:inline">
 			<p><input name="average" type="radio" value="1"> 1</p>
@@ -86,15 +127,6 @@
 			<p><input name="average" type="radio" value="3" checked> 3</p>
 			<p><input name="average" type="radio" value="4"> 4</p>
 			<p><input name="average" type="radio" value="5"> 5</p>
-		</div>
-
-		<label for="uiux">Оцените дизайн сайта</label>
-		<div id="uiux" style="display:inline">
-			<p><input name="uiux" type="radio" value="1"> 1</p>
-			<p><input name="uiux" type="radio" value="2"> 2</p>
-			<p><input name="uiux" type="radio" value="3" checked> 3</p>
-			<p><input name="uiux" type="radio" value="4"> 4</p>
-			<p><input name="uiux" type="radio" value="5"> 5</p>
 		</div>
 
 		<label for="loadTime">Как быстро в среднем загружаются страницы сайта??</label>
@@ -106,26 +138,46 @@
 			<p><input name="loadTime" type="radio" value="5">Слишком медленно</p>
 		</div>
 
-		<label for="usability">Оцените удобство сайта:</label>
-		<div id="usability" style="display:inline">
-			<p><input name="usability" type="radio" value="1"> 1</p>
-			<p><input name="usability" type="radio" value="2"> 2</p>
-			<p><input name="usability" type="radio" value="3" checked> 3</p>
-			<p><input name="usability" type="radio" value="4"> 4</p>
-			<p><input name="usability" type="radio" value="5"> 5</p>
+		<label for="limitations">По вашему мнению, много ли на сайте погрешностей, требующих доработок?</label>
+		<div id="limitations" style="display:inline">
+			<p><input name="limitations" type="radio" value="1"> Да</p>
+			<p><input name="limitations" type="radio" value="2" checked> Нет</p>
+			<p><input name="limitations" type="radio" value="3"> Кое-что есть</p>
 		</div>
 
-		<label for="trust">Вызывает ли данный сайт доверие?</label>
-		<div id="trust" style="display:inline">
-			<p><input name="trust" type="radio" value="1" checked> Да</p>
-			<p><input name="trust" type="radio" value="2"> Нет</p>
+		<label for="oneThing">Если бы вы могли изменить только одну вещь в этом сайте, что бы это было?</label>
+		<textarea class="form-control rounded-0" name="oneThing" id="oneThing" placeholder="Ваше мнение" rows="10"></textarea>
+
+		<label for="somethingNew">Узнали ли вы что-то новое из статей, представленных на сайте?</label>
+		<div id="somethingNew" style="display:inline">
+			<p><input name="somethingNew" type="radio" value="1"> Да</p>
+			<p><input name="somethingNew" type="radio" value="2" checked> Нет</p>
+			<p><input name="somethingNew" type="radio" value="3"> Кое-что есть</p>
 		</div>
 
-		<label for="errors">Много ли на сайте ошибок, недоработок?</label>
-		<div id="errors" style="display:inline">
-			<p><input name="errors" type="radio" value="1"> Да</p>
-			<p><input name="errors" type="radio" value="2" checked> Нет</p>
-			<p><input name="errors" type="radio" value="3"> Кое-что есть</p>
+		<label for="reccomend">Насколько часто вы рекомендуете друзьям и коллегам подобные сайты по шкале от 0 до 5? </label>
+		<div id="reccomend" style="display:inline">
+			<p><input name="reccomend" type="radio" value="1"> 1</p>
+			<p><input name="reccomend" type="radio" value="2"> 2</p>
+			<p><input name="reccomend" type="radio" value="3" checked> 3</p>
+			<p><input name="reccomend" type="radio" value="4"> 4</p>
+			<p><input name="reccomend" type="radio" value="5"> 5</p>
+		</div>
+
+		<label for="portrait">Если вы посетили раздел "Портрет", оцените пакет собранных о вас данных по шкале от 0 до 5</label>
+		<div id="portrait" style="display:inline">
+			<p><input name="portrait" type="radio" value="1"> 1</p>
+			<p><input name="portrait" type="radio" value="2"> 2</p>
+			<p><input name="portrait" type="radio" value="3" checked> 3</p>
+			<p><input name="portrait" type="radio" value="4"> 4</p>
+			<p><input name="portrait" type="radio" value="5"> 5</p>
+		</div>
+
+		<label for="trueData">Показались ли эти данные, собранные о вас, достоверными?</label>
+		<div id="trueData" style="display:inline">
+			<p><input name="trueData" type="radio" value="1" checked> Да </p>
+			<p><input name="trueData" type="radio" value="2"> Нет</p>
+			<p><input name="trueData" type="radio" value="3"> Затрудняюсь ответить</p>
 		</div>
 
 		<div>
@@ -134,13 +186,78 @@
 	</form>
 
 </div>
-<button id="aboutYouInfo" class="accordion">Что мы о вас сейчас знаем?</button>
-<div class="panel">
-	<p>
-		<ul>
-			<li style="display: none" id="ipEl">Ваш IP-адрес - <strong id="ipSign"></strong> </li>
-			<li style="display: none" id="geoEl">Ваше местоположение - <strong id="mapholder"></strong></li>
-			<li style="display: none" id="browsEl">Ваш браузер - <strong id="brows"></strong></li>
-		</ul>
-	</p>
+<button class="accordion">Ваше мнение о дизайне и опыте использования сайта</button>
+<div id="uiux" class="panel">
+	<div id="uiuxWere"></div>
+	<div id="uiuxAfter"></div>
+	<form id="uiuxForm" method="post" onsubmit="submitMessage(this, 'uiux');return false;" action="AboutYou/Uiux">
+
+		<label for="averageUi">Какую общую оценку дизайну сайта вы бы поставили?</label>
+		<div id="averageUi" style="display:inline">
+			<p><input name="averageUi" type="radio" value="1"> 1</p>
+			<p><input name="averageUi" type="radio" value="2"> 2</p>
+			<p><input name="averageUi" type="radio" value="3" checked> 3</p>
+			<p><input name="averageUi" type="radio" value="4"> 4</p>
+			<p><input name="averageUi" type="radio" value="5"> 5</p>
+		</div>
+
+		<label for="correctWork">Как вы считаете, корректно ли отображается сайт на вашем устройстве?</label>
+		<div id="correctWork" style="display:inline">
+			<p><input name="correctWork" type="radio" value="1" checked> Да</p>
+			<p><input name="correctWork" type="radio" value="2"> Нет</p>
+			<p><input name="correctWork" type="radio" value="3"> С небольшими огрехами</p>
+		</div>
+
+		<label for="trust">Вызывает ли этот сайт у вас доверие?</label>
+		<div id="trust" style="display:inline">
+			<p><input name="trust" type="radio" value="1" checked> Да</p>
+			<p><input name="trust" type="radio" value="2"> Скорее да </p>
+			<p><input name="trust" type="radio" value="3"> Скорее нет</p>
+			<p><input name="trust" type="radio" value="4"> Нет</p>
+			<p><input name="trust" type="radio" value="5"> Затрудняюсь ответить</p>
+		</div>
+
+		<label for="modern">Кажется ли вам дизайн сайта современным?</label>
+		<div id="modern" style="display:inline">
+			<p><input name="modern" type="radio" value="1" checked> Да</p>
+			<p><input name="modern" type="radio" value="2"> Нет </p>
+			<p><input name="modern" type="radio" value="5"> Затрудняюсь ответить</p>
+		</div>
+
+		<label for="pageLocations">Показалось ли вам очевидным и логичным назначение и расположение страниц сайта?</label>
+		<div id="pageLocations" style="display:inline">
+			<p><input name="pageLocations" type="radio" value="1" checked> Да</p>
+			<p><input name="pageLocations" type="radio" value="2"> Скорее да </p>
+			<p><input name="pageLocations" type="radio" value="3"> Скорее нет</p>
+			<p><input name="pageLocations" type="radio" value="4"> Нет</p>
+			<p><input name="pageLocations" type="radio" value="5"> Затрудняюсь ответить</p>
+		</div>
+
+		<label for="formPreference">На сайте представлены несколько вариантов предоставления информации: формы на этой странице и тест. Что показалось вам удобнее?</label>
+		<div id="formPreference" style="display:inline">
+			<p><input name="formPreference" type="radio" value="1" checked> Эта страница</p>
+			<p><input name="formPreference" type="radio" value="2"> Тест </p>
+			<p><input name="formPreference" type="radio" value="3"> Обе страницы неудобны</p>
+			<p><input name="formPreference" type="radio" value="4"> Обе страницы достаточно удобные</p>
+			<p><input name="formPreference" type="radio" value="5"> Затрудняюсь ответить</p>
+		</div>
+
+		<div>
+			<button class="btn btn-primary" type="submit">Отправить</button>
+		</div>
+	</form>
+</div>
+<button class="accordion">Проблемы, ошибки и предложения</button>
+<div id="free" class="panel">
+	<div id="uiuxWere"></div>
+	<div id="uiuxAfter"></div>
+	<p>Здесь вы можете предложить идею по улучшению сайта, написать отзыв в свободной форме, описать ошибку или баг, или что-либо еще.</p>
+	<form id="freeForm" method="post" onsubmit="submitMessage(this, $event, 'free');return false;" action="AboutYou/FreeForm">
+		<label for="freeText">Пишите в свободной форме</label>
+		<textarea class="form-control rounded-0" name="freeText" id="freeText" placeholder="Ваше мнение" rows="10"></textarea>
+		<div>
+			<button class="btn btn-primary" type="submit">Отправить</button>
+		</div>
+	</form>
+
 </div>

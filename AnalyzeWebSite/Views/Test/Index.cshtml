@@ -2,6 +2,34 @@
 @{
 	ViewData["Title"] = "Какую тему выбрать вам?";
 }
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166291616-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-166291616-1');
+	</script>
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function (m, e, t, r, i, k, a) {
+			m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+			m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+		})
+			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+		ym(62751832, "init", {
+			clickmap: true,
+			trackLinks: true,
+			accurateTrackBounce: true,
+			webvisor: true
+		});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/62751832" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->
+</head>
 <script type="text/javascript">
 	var timerStart = Date.now();
 </script>
@@ -14,23 +42,7 @@
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
 <script type="text/javascript" src="~/js/spyLib/geo.js"></script>
 <link rel="stylesheet" href="~/css/testStyles.css" />
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-	(function (m, e, t, r, i, k, a) {
-		m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-		m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-	})
-	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-ym(62290795, "init", {
-	clickmap: true,
-	trackLinks: true,
-	accurateTrackBounce: true,
-	webvisor: true
-});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 <script type="text/javascript">
 	loadTime(timerStart);
 </script>
@@ -41,111 +53,42 @@ ym(62290795, "init", {
 <script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
 <div id="pageId" style="display:none;">Тест</div>
-<form id="regForm" action="/Test/Submit">
-	<div class="tab">
+
+<form id="dissertationTest" method="post" action="/Test/Result">
+	<div id="degreeTest" class="tab">
 		<div class="form-group">
 			<label for="degreeSelect">На какой ступени образования вы сейчас находитесь?</label>
-			@Html.DropDownList("degreeSelect",
-										ViewBag.Degrees as SelectList,
-										"Ваш учебный статус",
-										new { @class = "form-control" })
+			<select class="form-control" id="degreeSelect" name="degreeSelect">
+				@foreach (var degr in ViewBag.Degrees) {
+					<option value="@(degr.Id)">@degr.Name</option>
+				}
+			</select>
 		</div>
-	</div>
-
-	<div class="tab">
-		<div class="form-group">
-			<label for="areaText">В какой области России вы живёте?</label>
-			<input type="text" class="form-control" id="areaText" value="" placeholder="Введите область">
-
-			<label for="areaText">В каком городе России вы учитесь?</label>
-			<input type="text" class="form-control" id="areaText" aria-describedby="areaTextBox" placeholder="Введите город">
-		</div>
-
-		<div class="form-check-inline">
-			<label class="form-check-label" for="anotherCountryCheck">Другая страна?</label>
-			<input type="checkbox" class="custom-control-input" style="width:10%" id="anotherCountryCheck">
-		</div>
-
 	</div>
 
 	<div class="tab">
 		<div class="form-group">
 			<label for="degreeRouteSelect">Выберить ваше направление</label>
-			<select class="form-control" id="degreeRouteSelect">
-				<option>Медицинские науки — 14.00.00</option>
-				<option>Биологические науки — 03.00.00</option>
-				<option>Экономические науки — 08.00.00</option>
-				<option>Юридические науки — 12.00.00</option>
-				<option>Педагогические науки — 13.00.00</option>
-				<option>Психологические науки — 19.00.00</option>
-				<option>Исторические науки — 07.00.00</option>
-				<option>Социологические науки — 22.00.00</option>
-				<option>Философские науки — 09.00.00</option>
-				<option>Политические науки — 23.00.00</option>
-				<option>Искусствоведение — 17.00.00</option>
-				<option>Архитектура — 18.00.00</option>
-				<option>Ветеринарные науки — 16.00.00</option>
-				<option>Науки о Земле — 25.00.00</option>
-				<option>Геолого-минералогические науки — 04.00.00</option>
-				<option>Географические науки — 11.00.00</option>
-				<option>Химические науки — 02.00.00</option>
-				<option>Ветеринарные науки — 16.00.00</option>
-				<option>Культурология — 24.00.00</option>
-				<option>Фармацевтические науки — 15.00.00</option>
-				<option>Военные науки — 20.00.00</option>
-				<option>Филологические науки — 10.00.00</option>
-				<option>Технические науки — 05.00.00</option>
-				<option>Физико-математические науки — 01.00.00</option>
-				<option>Другие cпециальности — 00.00.00</option>
+			<select class="form-control" id="degreeRouteSelect" name="degreeRouteSelect">
+				@foreach (var sciences in ViewBag.Sciences) {
+					<option value="@(sciences.Id)">@sciences.Name</option>
+				}
 			</select>
 		</div>
 	</div>
 
-	<div class="tab">
-
+	<div id="organization" class="tab">
 		<div class="form-group">
 			<label for="areaText">Связаны ли вы с каким-либо предприятием по вашей специальности? Если нет, введите "нет"</label>
-			<input type="text" class="form-control" id="areaText" aria-describedby="areaTextBox" placeholder="Введите название предприятия">
+			<input type="text" class="form-control" id="organizationText" name="organizationText" aria-describedby="areaTextBox" placeholder="Введите название предприятия">
 		</div>
 
 	</div>
-	<div class="tab">
+	<div id="innerRoute" class="tab">
 		<div class="form-group">
-			<label for="degreeRouteSelect">Выберить вашу специализацию в рамках направления "Медицинские науки":</label>
-			<select class="form-control" id="degreeRouteSelect">
-				<option>Хирургия</option>
-				<option>Внутренние болезни</option>
-				<option>Кардиология</option>
-				<option>Акушерство и гинекология</option>
-				<option>Педиатрия</option>
-				<option>Стоматология</option>
-				<option>Общественное здоровье и здравоохранение</option>
-				<option>Патологическая физиология</option>
-				<option>Нервные болезни</option>
-				<option>Фармакология, клиническая фармакология</option>
-				<option>Онкология</option>
-				<option>Аллергология и иммулология</option>
-				<option>Восстановительная медицина, спортивная медицина, курортология и физиотерапия</option>
-				<option>Гигиена</option>
-				<option>Лучевая диагностика, лучевая терапия</option>
-				<option>Травматология и ортопедия</option>
-				<option>Психиатрия</option>
-				<option>Анестезиология и реаниматология</option>
-				<option>Глазные болезни</option>
-			</select>
+			<label for="degreeRouteSelect">Выберить вашу специализацию в рамках выбранного направления:</label>
+			<select class="form-control" id="innerRouteSelect" name="innerRouteSelect"></select>
 		</div>
-	</div>
-	<div class="tab">
-		<p>
-			<label>Мы подобрали несколько вариантов по специализации "Кардиология" для вас:</label>
-			<ul>
-				<li>Влияние таурина на диастолическую функцию миокарда левого желудочка у больных ишемической болезнью, осложненной хронической сердечной недостаточностью</li>
-				<li>Cтентирование коронарных артерий у больных с ишемической болезнью сердца и онкопатологией</li>
-				<li>Фармакогенетические аспекты антикоагулянтной терапии варфарином у пациентов после протезирования клапанов сердца в условиях полифармакотерапии</li>
-				<li>Эффективность мероприятий по модификации образа жизни в профилактике артериальной гипертонии в организованной популяции</li>
-				<li>Оценка риска развития сахарного диабета у мужчин с различным уровнем сердечно-сосудистого риска</li>
-			</ul>
-		</p>
 	</div>
 	<div id="buttons" style="overflow:auto;">
 		<div style="float:right;">
@@ -155,7 +98,6 @@ ym(62290795, "init", {
 	</div>
 	<!-- Circles which indicates the steps of the form: -->
 	<div style="text-align:center;margin-top:40px;">
-		<span class="step"></span>
 		<span class="step"></span>
 		<span class="step"></span>
 		<span class="step"></span>

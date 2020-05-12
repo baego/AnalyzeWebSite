@@ -95,7 +95,7 @@ namespace AnalyzeWebSite.Services {
 						int totalLoadTime = 0;
 
 						loads.ForEach(x => totalLoadTime += x.Time);
-						model.AverageLoadTime = totalLoadTime / loads.Count;
+						model.AverageLoadTime = totalLoadTime / (loads.Count + 1);
 
 					} catch (Exception ex) {
 
@@ -106,7 +106,7 @@ namespace AnalyzeWebSite.Services {
 					try {
 						var losts = spyDB.PageLoadTimeLog.Where(x => x.UserId == ip && x.SessionId == sessionId).ToList();
 
-						model.FocusLostCount = losts.Count;
+						model.FocusLostCount = losts.Count - model.History.Count;
 
 					} catch (Exception ex) {
 
@@ -143,7 +143,7 @@ namespace AnalyzeWebSite.Services {
 						
 						var previousSessions = spyDB.Sessions.Where(x => x.UserId == ip).ToList();
 
-						model.PreviousSessions = previousSessions.Count;
+						model.PreviousSessions = (previousSessions.Count)/6;
 
 					} catch (Exception ex) {
 

@@ -8,6 +8,6 @@ namespace AnalyzeWebSite.Data.SiteEntites {
 		public int Id { get; set; }
 		public int DirectionId { get; set; }
 		public bool Organization {get; set;}
-		public string Text { get; set; }
+		public string Name { get; set; }
 	}
 }

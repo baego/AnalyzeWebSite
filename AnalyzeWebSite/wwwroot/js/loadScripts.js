@@ -45,7 +45,6 @@ $(window).ready(function () {
 			if (pic.is(":hidden"))
 				pic.show("fast");
 
-			cookie.css("display", "block ");
 		}
 	}, false);
 

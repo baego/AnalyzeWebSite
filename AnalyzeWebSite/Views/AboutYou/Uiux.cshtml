@@ -1,6 +1,5 @@
-﻿
-@{
-	ViewData["Title"] = "Требования к магистерской диссертации";
+﻿@{
+	ViewData["Title"] = "Спасибо за заполнение опроса!";
 }
 <head>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -41,18 +40,9 @@
 <script type="text/javascript" src="~/js/spyLib/focus.js"></script>
 <script type="text/javascript" src="~/js/spyLib/pageLogger.js"></script>
 <script type="text/javascript" src="~/js/spyLib/collector.js"></script>
-<div id="pageId" style="display:none;">Требования к магистерской диссертации</div>
+<div id="pageId" style="display:none;">Заполненный опрос(UIUX)</div>
 <script type="text/javascript">
 	loadTime(timerStart);
 </script>
-<h1 id="hi" class="index-hi" style="margin-top:10%">Требования к магистерской диссертации</h1>
-<p style="margin-top:30px">
-	Сразу стоит отметить, что в разных ВУЗах (и даже на разных кафедрах внутри одного ВУЗа) требования к оформлению и содержанию работы могут отличаться. Однако базовые требования к оформлению магистерской диссертации не меняются довольно давно, и представляют собой:
-	Требования делятся на два вида:
-	<ul>
-		<li><a id="navigationToFormalRequirements" onclick="linkLogger(event)" href="@Url.Action("FormalizationRequirements", "Requirements")">по оформлению</a></li>
-		<li><a id="navigationToContentRequirements" onclick="linkLogger(event)" href="@Url.Action("ContentRequirements", "Requirements")">по содержанию</a></li>
-		<li><a id="navigationToUsefulLinks" onclick="linkLogger(event)" href="@Url.Action("UsefulLinks", "Requirements")">полезные ссылки</a></li>
-	</ul>
-</p>
-
+<h1 id="hi" class="index-hi" style="margin-top:10%">Спасибо за заполнение опроса!</h1>
+<p style="margin-top:30px">Вы можете вернуться на страницу <a href="@Url.Action("Index", "AboutYou")">"О вас"</a> и заполнить какой-нибудь другой опрос, а можете изучить остальные разделы сайта.</p>

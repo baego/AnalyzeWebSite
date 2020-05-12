@@ -313,6 +313,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\AboutYou\Common.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AboutYou\Uiux.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AboutYou\Functional.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Requirements\ContentRequirements.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

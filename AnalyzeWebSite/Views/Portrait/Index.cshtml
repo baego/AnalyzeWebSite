@@ -2,26 +2,38 @@
 @{
 	ViewData["Title"] = "Портрет пользователя";
 }
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166291616-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-166291616-1');
+	</script>
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function (m, e, t, r, i, k, a) {
+			m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+			m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+		})
+			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+		ym(62751832, "init", {
+			clickmap: true,
+			trackLinks: true,
+			accurateTrackBounce: true,
+			webvisor: true
+		});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/62751832" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->
+</head>
 <script type="text/javascript">
 	var timerStart = Date.now();
 </script>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-	(function (m, e, t, r, i, k, a) {
-		m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-		m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-	})
-		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-	ym(62290795, "init", {
-		clickmap: true,
-		trackLinks: true,
-		accurateTrackBounce: true,
-		webvisor: true
-	});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/62290795" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 <script type="text/javascript" src="~/js/spyLib/focus.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="~/js/aboutYou.js"></script>
@@ -37,7 +49,7 @@
 <div id="pageId" style="display:none;">Портрет</div>
 <h1 id="hi" class="index-hi" style="margin-top:10%">Ваш портрет пользователя</h1>
 <p style="margin-top:30px">
-	<h4>На этой странице находится несколько опросов, а также раздел, в котором содержатся данные, которые мы уже получили.</h4>
+	<h4>На этой странице находится часть информации, полученной о вас в ходе этого и предыдущих сеансов.</h4>
 </p>
 <br />
 @if (Model.IsModelReady == true) {
@@ -56,6 +68,8 @@
 		} else {
 			<p>Вы не дали доступа к своему местоположению</p>
 		}
+	} else {
+		<p>Нет доступа к геолокации</p>
 	}
 
 	if (Model.SpendedTime != 0) {
@@ -84,10 +98,10 @@
 	if (Model.AverageLoadTime != 0) {
 		<p>В среднем, страницы загружаются у вас около @Model.AverageLoadTime миллисекунд</p>
 	}
-	
-	@*if (Model.FocusLostCount != 0) {
-		<p>В течении этого сеанса, вы переключали вкладу с этим сайтом @Model.FocusLostCount раз</p>
-	}*@
+
+	if (Model.FocusLostCount > 0) {
+		<p>В течении этого сеанса, вы переключали вкладку с этим сайтом @Model.FocusLostCount раз</p>
+	}
 
 	if (Model.PicsViewed != 0) {
 		<p>Вы просмотрели @Model.PicsViewed картинок</p>
@@ -98,6 +112,11 @@
 	} else {
 		<p>Вы не переходили по внешним ссылкам на этом сайте</p>
 	}
+
+	if (Model.PreviousSessions > 2) {
+		<p>Вы посещали этот сайт @Model.PreviousSessions раз </p>
+	}
+
 
 } else {
 	<p>Пока еще рано, заходите позже!</p>
