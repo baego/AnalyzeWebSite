@@ -46,6 +46,11 @@
 <script type="text/javascript">
 	loadTime(timerStart);
 </script>
+<style>
+	.invalid {
+		background-color: #ffdddd;
+	}
+</style>
 <div id="pageId" style="display:none;">О вас</div>
 <h1 id="hi" class="index-hi" style="margin-top:10%">Расскажите о себе</h1>
 <p style="margin-top:30px">
@@ -53,27 +58,53 @@
 </p>
 <script>
 	function submitMessage(form, e, name) {
-		var form = $(this);
+
+		var form = document.getElementById(name + "Form");
+		var valid = true;
+
 		e.preventDefault();
 
-		$.ajax({
-			type: form.attr('method'),
-			data: form.serialize(),
-			dataType: "json",
-			url: form.attr('action'),
-			success: function (data) {
-				$("#" + name + "After").text(data);
-				form.css("display", "none");
-			}
-		});
+		var inputs = form.getElementsByTagName("input");
+		var txtars = form.getElementsByTagName("textarea");
 
+		if (txtars != undefined) {
+			for (i = 0; i < txtars.length; i++) {
+				txtars[i].classList.remove("invalid");
+
+				if (txtars[i].value === "") {
+
+					txtars[i].className += " invalid";
+					valid = false;
+				}
+			}
+		}
+		// проверяет все поля
+		for (i = 0; i < inputs.length; i++) {
+			inputs[i].classList.remove("invalid");
+
+			if (inputs[i].value === "") {
+
+				inputs[i].className += " invalid";
+				valid = false;
+			}
+			if (inputs[i].id === 'yourYear') {
+				if (!inputs[i].value.match(/^\d+$/)) {
+					inputs[i].className += " invalid";
+					valid = false;
+				}
+			}
+		}
+		if (valid) {
+			form.submit();
+		}
 	}
+
 </script>
 <button class="accordion">Общая информация о вас</button>
 <div id="common" class="panel">
 	<div id="commonWere"></div>
 	<div id="commonAfter"></div>
-	<form id="commonForm" action="AboutYou/Common" onsubmit="submitMessage(this, 'common');return false;" method="post">
+	<form id="commonForm" action="AboutYou/Common" onsubmit="submitMessage(this, event, 'common');return false;" method="post">
 		<div class="form-group">
 			<label for="yourName">Представьтесь</label>
 			<input type="text" class="form-control" id="yourName" name="yourName" placeholder="Ваше имя">
@@ -118,7 +149,7 @@
 <div id="functional" class="panel">
 	<div id="functionalWere"></div>
 	<div id="functionalAfter"></div>
-	<form id="functionalForm" method="post" onsubmit="submitMessage(this, 'functional');return false;" action="AboutYou/Functional">
+	<form id="functionalForm" method="post" onsubmit="submitMessage(this, event, 'functional');return false;" action="AboutYou/Functional">
 
 		<label for="average">Какую общую оценку сайту вы бы поставили?</label>
 		<div id="average" style="display:inline">
@@ -190,7 +221,7 @@
 <div id="uiux" class="panel">
 	<div id="uiuxWere"></div>
 	<div id="uiuxAfter"></div>
-	<form id="uiuxForm" method="post" onsubmit="submitMessage(this, 'uiux');return false;" action="AboutYou/Uiux">
+	<form id="uiuxForm" method="post" onsubmit="submitMessage(this, event, 'uiux');return false;" action="AboutYou/Uiux">
 
 		<label for="averageUi">Какую общую оценку дизайну сайта вы бы поставили?</label>
 		<div id="averageUi" style="display:inline">
@@ -252,7 +283,7 @@
 	<div id="uiuxWere"></div>
 	<div id="uiuxAfter"></div>
 	<p>Здесь вы можете предложить идею по улучшению сайта, написать отзыв в свободной форме, описать ошибку или баг, или что-либо еще.</p>
-	<form id="freeForm" method="post" onsubmit="submitMessage(this, $event, 'free');return false;" action="AboutYou/FreeForm">
+	<form id="freeForm" method="post" onsubmit="submitMessage(this, event, 'free');return false;" action="AboutYou/FreeForm">
 		<label for="freeText">Пишите в свободной форме</label>
 		<textarea class="form-control rounded-0" name="freeText" id="freeText" placeholder="Ваше мнение" rows="10"></textarea>
 		<div>

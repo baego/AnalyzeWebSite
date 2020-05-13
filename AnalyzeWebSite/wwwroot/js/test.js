@@ -87,7 +87,7 @@ function validateForm() {
 
 	// проверяет все поля
 	for (i = 0; i < y.length; i++) {
-		if (y[i].value === "") {
+		if (y[i].value === "" && y[i].id !== 'organizationText') {
 			y[i].className += " invalid";
 			valid = false;
 		}

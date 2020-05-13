@@ -228,7 +228,7 @@ namespace AnalyzeWebSite.Services {
 			string org = "None";
 			var result = new List<string>();
 
-			if (organizationText != "" || organizationText != "нет")
+			if (organizationText != "" && organizationText != "нет" && organizationText != null)
 				org = organizationText;
 
 			//сначала запишем в шпионскую базу данные и отдельно сам факт заполнения
@@ -262,10 +262,10 @@ namespace AnalyzeWebSite.Services {
 						//если тема подразумевает наличие организации и сама организация заполнена
 						if (!theme.Organization && org != "None" ) {
 
-							result.Add(theme.Name);
+							result.Add(theme.Name + org + "\"");
 						} else {
 
-							result.Add(theme.Name + org + "\"");
+							result.Add(theme.Name);
 						}
 					}
 				}
