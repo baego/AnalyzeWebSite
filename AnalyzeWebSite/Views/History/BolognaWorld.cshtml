@@ -1,6 +1,9 @@
 ﻿@{
 	ViewData["Title"] = "История болонской системы";
 }
+<script type="text/javascript">
+	var timerStart = Date.now();
+</script>
 <head>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166291616-1"></script>
@@ -84,12 +87,19 @@
 		<li>Содействие необходимым европейским воззрениям в высшем образовании, особенно в области развития учебных планов, межинституционального сотрудничества, схем мобильности и совместных программ обучения, практической подготовки и проведения научных исследований.</li>
 	</ul>
 </p>
-
+<p>
+	Далее:
+	<ul>
+		<li>
+			<a id="navigationToBolognaRussia" onclick="linkLogger(event)" href="@Url.Action("BolognaRussia", "History")">Болонская система в России;</a>
+		</li>
+	</ul>
+</p>
 <p>
 	Материал подготовлен при помощи:
 	<ul>
 		<li><a target="_blank" id="SourceToEheaFromBolognaWorld" onclick="linkLogger(event)" href="http://www.ehea.info">Официальный сайт</a></li>
-		<li><a target="_blank" id="SourceToWikiFromBolognaWorld" onclick="linkLogger(event)" href="http://www.ru.wikipedia.org/wiki/Болонский_процесс">Википедия</a></li>
+		<li><a target="_blank" id="SourceToWikiFromBolognaWorld" onclick="linkLogger(event)" href="https://en.wikipedia.org/wiki/Bologna_Process">Википедия</a></li>
 	</ul>
 </p>
 
