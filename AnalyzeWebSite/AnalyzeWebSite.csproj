@@ -323,6 +323,9 @@
     <Content Update="Views\AboutYou\Functional.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Home\Politics.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Requirements\ContentRequirements.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

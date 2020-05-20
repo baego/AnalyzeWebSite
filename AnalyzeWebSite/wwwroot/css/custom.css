@@ -23,7 +23,7 @@ ul.list-custom {
   }
 
 .index-hi {
-  margin-top: 20%;
+  margin-top: 30%;
   color: cornflowerblue;
   font-size: 400%;
   display:none;
@@ -87,7 +87,7 @@ ul.list-custom {
   font-size: 20px;
   background: white;
   text-align: center;
-  top: 10%;
+  top: 20%;
   right: 5%;
   -webkit-animation-name: cookie-appearance;
   -webkit-animation-duration: 0.3s;

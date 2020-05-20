@@ -79,8 +79,10 @@
 </div>
 <div id="cookieBanner" class="cookie-message" style="background-color: #3b3b3b; transition: .55s opacity, .55s visibility;">
 	<h6 style="margin: 16px 16px 16px 16px;">
-		<p style="color:white;"><strong>На этом сайте собираются и используются cookie!</strong></p>
-		<p style="color:white;">Подробнее об этом можно прочитать <a id="navigateToCookieFromMain" onclick="linkLogger(event)" href="@Url.Action("Cookies", "Home")" target="_blank">здесь</a></p>
+		<p style="color:white;"><strong>На этом сайте в научных целях собираются персональные данные и используются куки!</strong></p>
+		<p style="color:white;"><strong>Ваш IP-адрес будет залогирован</strong>, если вы не хотите оставлять о себе подобную информацию, то немедленно покиньте этот веб-сайт!</p>
+		<p style="color:white;">Прочитать об этом и других собираемых данных вы можете на странице  <a id="navigateToPoliticsFromMain" onclick="linkLogger(event)" href="@Url.Action("Politics", "Home")" target="_blank">"политика конфиденциальности"</a></p>
+		<p style="color:white;">Подробнее о куках можно прочитать <a id="navigateToCookieFromMain" onclick="linkLogger(event)" href="@Url.Action("Cookies", "Home")" target="_blank">здесь</a></p>
 		<button class="btn btn-primary" onclick="cookieAgree()">Понятно</button>
 	</h6>
 </div>

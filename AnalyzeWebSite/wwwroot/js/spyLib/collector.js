@@ -17,6 +17,7 @@ function checkData() {
 
 	checkGeo();
 	checkBrowser();
+	checkReferer();
 }
 
 function getIp(callbackFunction) {
@@ -52,6 +53,20 @@ function checkBrowser() {
 		defineBrowser();
 		var browser = getFromCookie('Browser');
 		$.post(window.location.origin + "/Spy/GetBrowser", { browser: browser, ip: ip });
+
+	}
+}
+
+//смотрим, откуда пришел пользователь
+function checkReferer() {
+
+	if (!document.cookie.includes('Referer')) {
+
+		var ip = getFromCookie('IPAdress');
+		var ref = document.referrer;
+		document.cookie = 'Referer=' + ref;
+
+		$.post(window.location.origin + "/Spy/GetReferer", { referer: ref, ip: ip });
 
 	}
 }

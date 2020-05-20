@@ -260,9 +260,9 @@ namespace AnalyzeWebSite.Services {
 					foreach(var theme in themes) {
 
 						//если тема подразумевает наличие организации и сама организация заполнена
-						if (!theme.Organization && org != "None" ) {
+						if (theme.Organization && org != "None" ) {
 
-							result.Add(theme.Name + org + "\"");
+							result.Add(theme.Name + " *название вашей организациии*");
 						} else {
 
 							result.Add(theme.Name);

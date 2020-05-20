@@ -81,6 +81,15 @@ namespace AnalyzeWebSite.Controllers {
 			spyService.WriteBrowser(browser, ip, sessionId);
 		}
 
+		[HttpPost]
+		public void GetReferer(string referer, string ip) {
+
+			var spyService = new SpyService();
+			var sessionId = CheckSession(ip);
+
+			spyService.WriteReferer(referer, ip, sessionId);
+		}
+
 		/// <summary>
 		/// Логгирование покидания страницы и времени, проведенного на ней
 		/// </summary>

@@ -37,6 +37,11 @@ namespace AnalyzeWebSite.Services {
 			WriteBrowserInDb(browser, ip, sessionId);
 		}
 
+		public void WriteReferer(string referer, string ip, Guid sessionId) {
+
+			WriteRefererInDb(referer, ip, sessionId);
+		}
+
 		/// <summary>
 		/// Логирование покидания страницы
 		/// </summary>
@@ -160,6 +165,28 @@ namespace AnalyzeWebSite.Services {
 			try {
 				spyDB.Users.Add(new Users { IP = ip, CreateDate = DateTime.Now });
 				spyDB.SaveChanges();
+			} catch (Exception ex) {
+
+				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);
+
+			}
+		}
+
+		/// <summary>
+		/// Записываем в базу, откуда пришел пользователь
+		/// </summary>
+		private void WriteRefererInDb(string referer, string ip, Guid sessionId) {
+			try {
+				var refererLink = "";
+
+				if (referer == null || referer == "")
+					refererLink = "Straight or other";
+
+				using (var spyDB = new SpyContext()) {
+
+					spyDB.Referers.Add(new Referers { UserId = ip, SessionId = sessionId, Referer = refererLink, Date = DateTime.Now });
+					spyDB.SaveChanges();
+				}
 			} catch (Exception ex) {
 
 				SiteService.WriteError(ex.Message, ex.Source, ex.StackTrace);

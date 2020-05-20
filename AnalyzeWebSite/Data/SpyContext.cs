@@ -13,6 +13,7 @@ namespace AnalyzeWebSite.Data {
 		public DbSet<Users> Users { get; set; }
 		public DbSet<Links> Links { get; set; }
 		public DbSet<ExitLog> ExitLog { get; set; }
+		public DbSet<Referers> Referers { get; set; }
 		public DbSet<Sessions> Sessions { get; set; }
 		public DbSet<Browsers> Browsers { get; set; }
 		public DbSet<UiuxForms> UiuxForms { get; set; }
