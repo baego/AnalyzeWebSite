@@ -79,6 +79,7 @@
 	if (Model.History.Count() != 0) {
 		<p>Ваша история посещений в этом сеансе:</p>
 		<ul>
+			@{Model.History = Model.History.OrderBy(x => x.Date).ToList();}
 			@foreach (var page1 in Model.History) {
 				<li>
 					@if (@page1.Time < 2) {

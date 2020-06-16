@@ -82,7 +82,7 @@ namespace AnalyzeWebSite.Services {
 
 							model.SpendedTime += page.Time;
 							thisSessionHistory.OrderBy(x => x.Date);
-							model.History.Add(new HistoryClass { Page = page.Page, Time = page.Time });
+							model.History.Add(new HistoryClass { Page = page.Page, Time = page.Time, Date = page.Date});
 						}
 					} catch (Exception ex) {
 

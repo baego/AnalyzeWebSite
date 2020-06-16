@@ -35,6 +35,7 @@ namespace AnalyzeWebSite.Models {
 
 	public class HistoryClass {
 
+		public DateTime Date { get; set; }
 		public string Page { get; set; }
 		public int Time { get; set; }
 	}
